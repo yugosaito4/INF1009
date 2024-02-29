@@ -24,7 +24,7 @@ public class LifecycleManager extends ApplicationAdapter {
 		
 		collisionManager = new CollisionManager(); 
 		
-		ioManager = new IOManagement();
+		ioManager = new IOManagement(); //initialize IO manager
 		
 	}
 	
