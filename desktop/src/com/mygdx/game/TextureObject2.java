@@ -2,9 +2,9 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Input.Keys;
 
-public class TextureObject extends Player{
+public class TextureObject2 extends Player{
 	
-	public TextureObject(String imagePath, float x, float y, float s) {
+	public TextureObject2(String imagePath, float x, float y, float s) {
 		super(imagePath, x, y, s);
 	}
 
@@ -15,8 +15,8 @@ public class TextureObject extends Player{
 
 	@Override
 	public void UserEntityMovement() {
-		movementX(Keys.LEFT, Keys.RIGHT);
-		movementY(Keys.UP, Keys.DOWN);
+		movementX(Keys.A, Keys.D);
+		movementY(Keys.W, Keys.S);
 	}
 
 
