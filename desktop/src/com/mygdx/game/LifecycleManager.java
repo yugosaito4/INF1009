@@ -14,7 +14,7 @@ public class LifecycleManager extends ApplicationAdapter {
 	
 	public void create()
 	{	
-		batch = new SpriteBatch();
+		batch = new SpriteBatch(); //test comment
 		
 		entityManager = new EntityManager();
 		entityManager.addEntity(); //add the entities into the simulation
