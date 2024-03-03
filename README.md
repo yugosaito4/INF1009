@@ -16,7 +16,7 @@ A simple game engine for project milstone 1
 * Import project folder as gradle -> Exisiting Gradle Project
 * Run new Config
 
-#Usage
+# Usage
 
 * Player entity (water droplet) can be moved via the arrow keys
 * Right click will change screen texture from first scene to second scene and esc key will change from second scene back to first
