@@ -18,14 +18,12 @@ public class EntityManager {
 	
 	public void addEntity()
 	{
-		entityList.add(new TextureObject("droplet.png", 100, 200, 50));
 		entityList.add(new TextureObjectStatic("bucket.png",100,300,50));
 		entityList.add(new TextureObjectAI("bucket.png",200,300,1));
 	}
 	
 	public void removeEntity(Entity e)
 	{
-		
 		entityList.remove(e);
 	}
 	

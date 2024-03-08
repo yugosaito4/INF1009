@@ -8,6 +8,7 @@ public class LifecycleManager extends ApplicationAdapter {
 	
 	private SpriteBatch batch;
 	private EntityManager entityManager;
+	private PlayerManager playerManager;
 	private CollisionManager collisionManager;
 	private SceneManager sceneManager;
 	private IOManagement ioManager;
@@ -16,8 +17,13 @@ public class LifecycleManager extends ApplicationAdapter {
 	{	
 		batch = new SpriteBatch(); //test comment
 		
+		
+		
 		entityManager = new EntityManager();
 		entityManager.addEntity(); //add the entities into the simulation
+		
+		playerManager = new PlayerManager();
+		playerManager.addPlayers();
 		
 		sceneManager = new SceneManager();
 		sceneManager.create(); //create scenes for the simulation
@@ -34,9 +40,10 @@ public class LifecycleManager extends ApplicationAdapter {
 		ScreenUtils.clear(0,0,0.2f,1);
 		
 		sceneManager.render(); //render the scene texture
+		playerManager.drawPlayers(batch);
 		entityManager.drawEntity(batch); //draw entities 
 		entityManager.movement(); //move movable entities (AI)
-		ioManager.handleInput(entityManager.getEntityList()); // handle the IO 
+		ioManager.handleInput(playerManager.getPlayerList()); // handle the IO 
 		collisionManager.checkCollisions(entityManager.getEntityList());//handle the collision
 	}
 	
