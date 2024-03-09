@@ -17,7 +17,6 @@ public class PlayerManager {
 	public void addPlayers()
 	{
 		playerList.add(new TextureObject("droplet.png", 100, 200, 50));
-		playerList.add(new TextureObject2("droplet.png", 100, 300, 50));
 	}
 	
 	public void drawPlayers(SpriteBatch batch)

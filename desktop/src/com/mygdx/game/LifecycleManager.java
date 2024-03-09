@@ -44,7 +44,7 @@ public class LifecycleManager extends ApplicationAdapter {
 		entityManager.drawEntity(batch); //draw entities 
 		entityManager.movement(); //move movable entities (AI)
 		ioManager.handleInput(playerManager.getPlayerList()); // handle the IO 
-		collisionManager.checkCollisions(entityManager.getEntityList());//handle the collision
+		collisionManager.checkCollisionList(playerManager.getPlayerList(),entityManager.getEntityList());//handle the collision
 	}
 	
 	
