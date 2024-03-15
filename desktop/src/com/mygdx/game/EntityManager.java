@@ -16,6 +16,7 @@ public class EntityManager {
 	}
 	
 	
+	
 	public void addEntity()
 	{
 		entityList.add(new TextureObjectStatic("bucket.png",100,300,50));
