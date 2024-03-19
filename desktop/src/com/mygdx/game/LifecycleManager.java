@@ -7,11 +7,12 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class LifecycleManager extends ApplicationAdapter {
 	
 	private SpriteBatch batch;
-	private EntityManager entityManager;
+	/*private EntityManager entityManager;
 	private PlayerManager playerManager;
-	private CollisionManager collisionManager;
+	private CollisionManager collisionManager;*/
 	private SceneManager sceneManager;
-	private IOManagement ioManager;
+	//private IOManagement ioManager;
+	
 	
 	public void create()
 	{	
@@ -19,19 +20,19 @@ public class LifecycleManager extends ApplicationAdapter {
 		
 		
 		
-		entityManager = new EntityManager();
+		/*entityManager = new EntityManager();
 		entityManager.addEntity(); //add the entities into the simulation
 		
 		playerManager = new PlayerManager();
 		playerManager.addPlayers();
-		
+		*/
 		sceneManager = new SceneManager();
 		sceneManager.create(); //create scenes for the simulation
 		
-		collisionManager = new CollisionManager(); 
+		/*collisionManager = new CollisionManager(); 
 		
 		ioManager = new IOManagement(); //initialize IO manager
-		
+		*/
 	}
 	
 
@@ -40,11 +41,12 @@ public class LifecycleManager extends ApplicationAdapter {
 		ScreenUtils.clear(0,0,0.2f,1);
 		
 		sceneManager.render(); //render the scene texture
-		playerManager.drawPlayers(batch);
+		/*playerManager.drawPlayers(batch);
 		entityManager.drawEntity(batch); //draw entities 
 		entityManager.movement(); //move movable entities (AI)
 		ioManager.handleInput(playerManager.getPlayerList()); // handle the IO 
 		collisionManager.checkCollisionList(playerManager.getPlayerList(),entityManager.getEntityList());//handle the collision
+		*/
 	}
 	
 	
