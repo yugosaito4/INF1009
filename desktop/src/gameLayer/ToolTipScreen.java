@@ -30,10 +30,10 @@ public class ToolTipScreen extends Scene{
 				+ " be different category of healthy food that you ", 30, 280);
 		font.draw(batch,  "would have to eat specifically.", 30, 260);
 		font.draw(batch, toolTipText,30, 240);
-		font.draw(batch, "Press P to play!", 250, 50);
+		font.draw(batch, "Press O to play!", 250, 50);
 		batch.end();
 		
-		if(Gdx.input.isKeyPressed(Input.Keys.P)) {
+		if(Gdx.input.isKeyPressed(Input.Keys.O)) {
 			game.setScene(targetNextScene);
 		}
 	}
