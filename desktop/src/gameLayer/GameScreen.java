@@ -44,10 +44,11 @@ public class GameScreen extends Scene{
 		batch.begin();
 		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		font.draw(batch, "This is the game scene", 100, 200);
-		batch.end();
-		
 		playerManager.drawPlayers(batch); //draw player
 		entityManager.drawEntity(batch); //draw entities 
+		batch.end();
+		
+
 		entityManager.movement(); //move movable entities (AI)
 		ioManager.handleInput(playerManager.getPlayerList()); // handle the IO 
 		collisionManager.checkCollisionList(playerManager.getPlayerList(),entityManager.getEntityList());//handle the collision

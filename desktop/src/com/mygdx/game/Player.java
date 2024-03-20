@@ -34,13 +34,13 @@ public abstract class Player implements iMovable , iCollider{
 
     // Input handling and movement logic
     public void handleInput() {
-        if (Gdx.input.isKeyPressed(Keys.LEFT) && currentDirection != Keys.RIGHT) {
+        if (Gdx.input.isKeyPressed(Keys.LEFT) ) {
             currentDirection = Keys.LEFT;
-        } else if (Gdx.input.isKeyPressed(Keys.RIGHT) && currentDirection != Keys.LEFT) {
+        } else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
             currentDirection = Keys.RIGHT;
-        } else if (Gdx.input.isKeyPressed(Keys.UP)&& currentDirection != Keys.DOWN) {
+        } else if (Gdx.input.isKeyPressed(Keys.UP)) {
             currentDirection = Keys.UP;
-        } else if (Gdx.input.isKeyPressed(Keys.DOWN)&& currentDirection != Keys.UP) {
+        } else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
             currentDirection = Keys.DOWN;
         }
     }
@@ -61,6 +61,23 @@ public abstract class Player implements iMovable , iCollider{
                 this.y -= this.speed * deltaTime;
                 break;
         }
+        
+        float objectWidth = tex.getWidth();
+        float objectHeight = tex.getHeight();
+
+	    float maxX = Gdx.graphics.getWidth() - objectWidth;
+	    if (getX() < 0) {
+	    	setX(0);
+	    } else if (getX() > maxX) {
+	    	setX(maxX);
+	    }
+	    
+	    float maxY = Gdx.graphics.getHeight() - objectHeight;
+		if (getY() < 0) {
+			setY(0);
+		} else if (getY() > maxY) {
+			setY(maxY);
+		}
     }
 
 	public abstract void update();
@@ -138,8 +155,6 @@ public abstract class Player implements iMovable , iCollider{
 	//draw
 	public void draw(SpriteBatch batch)
 	{
-		batch.begin();
-			batch.draw(tex, x, y);
-		batch.end();
+		batch.draw(tex, x, y);
 	}
 }
