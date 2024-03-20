@@ -1,7 +1,8 @@
 package gameLayer;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+
+
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -11,19 +12,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.mygdx.game.*;
+import com.mygdx.game.Scene;
+import com.mygdx.game.SceneManager;
 
-public class ToolTipScreen extends Scene{
+public class Instructions extends Scene{
 	private BitmapFont font; // Add a BitmapFont member variable to hold the font
-	private String toolTipText;
 	private Stage stage;
-	private Button startGameButton;
+	private Button startButton;
 
-	public ToolTipScreen(SceneManager game, String toolTipText, String targetNextScene) {
+	public Instructions(SceneManager game) {
 		super(game, "bg1.jpg");
 		font = new BitmapFont();
-		this.toolTipText = toolTipText;
-		
 		stage = new Stage(new ScreenViewport()); // Use the current screen size
         Gdx.input.setInputProcessor(stage); // Set input processor
         
@@ -31,19 +30,19 @@ public class ToolTipScreen extends Scene{
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
         // Create and set up the start game button
-        startGameButton = new TextButton("Start Game", skin);
-        startGameButton.setPosition(270, 100); // Adjust position to match your needs
-        startGameButton.setSize(200, 50); // Adjust size to match your needs
+        startButton = new TextButton("Back to Start Screen", skin);
+        startButton.setPosition(270, 100); // Adjust position to match your needs
+        startButton.setSize(200, 50); // Adjust size to match your needs
 
         // Add the button to the stage
-        stage.addActor(startGameButton);
+        stage.addActor(startButton);
 
         // Button click listener
-        startGameButton.addListener(new ClickListener() {
+        startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // Handle button click
-                game.setScene(targetNextScene);
+                game.setScene("startScene");
             }
         });
 		
@@ -54,13 +53,9 @@ public class ToolTipScreen extends Scene{
 		ScreenUtils.clear(0,0,0.2f,1);
 		batch.begin();
 		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		font.draw(batch, "Tool Tips!", 270, 450);
-		font.draw(batch, "The objective of the game is to control the snake and eat all the "
-				+ "healthy food, while avoiding ", 30, 300);
-		font.draw(batch, "the unhealthy ones! In each stage, there will"
-				+ " be different category of healthy food that you ", 30, 280);
-		font.draw(batch,  "would have to eat specifically.", 30, 260);
-		font.draw(batch, toolTipText,30, 240);
+		font.draw(batch, "Instructions", 230, 450);
+		font.draw(batch, "Move the snake using W, A, S, D", 200, 300);
+		font.draw(batch, "In each level, there will be a specific category of healthy food to target for eating.", 50, 280);
 		
 		batch.end();
 		
@@ -101,7 +96,7 @@ public class ToolTipScreen extends Scene{
 	
 	public void dispose() {
 		font.dispose();
-		stage.dispose();
 		super.dispose();
 	}
 }
+

@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import gameLayer.EndGameScreen;
 import gameLayer.EndLevelScreen;
 import gameLayer.GameScreen;
+import gameLayer.Instructions;
 import gameLayer.StartScreen;
 import gameLayer.ToolTipScreen;
 
@@ -24,6 +25,8 @@ public class SceneManager extends Game {
     @Override
     public void create() {
     	addScene("startScene", new StartScreen(this));
+    	
+    	addScene("instructions", new Instructions(this));
     	
     	addScene("toolTip1", new ToolTipScreen(this, "The category for this level is proteins!", "gameScene1"));
     	addScene("toolTip2", new ToolTipScreen(this, "The category for this level is vegetables!", "gameScene2"));
