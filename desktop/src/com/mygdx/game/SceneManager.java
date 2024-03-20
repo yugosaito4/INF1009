@@ -41,9 +41,6 @@ public class SceneManager extends Game {
     	addScene("endLevel4", new EndLevelScreen(this, "Congrats on completing Level 4!", "endGameScene"));
     	
     	addScene("endGameScene", new EndGameScreen(this));
-        /*addScene("mainScene", new MainScene(this));
-        addScene("gameScene", new GameScene(this));
-        */
         setScene("startScene"); //set the initial scene
     }
 

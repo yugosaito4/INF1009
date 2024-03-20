@@ -7,12 +7,13 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.*;
 
 public class GameScreen extends Scene{
+	
+	
 	private BitmapFont font; // Add a BitmapFont member variable to hold the font
 	private String nextTargetScene;
 	private EntityManager entityManager;
 	private PlayerManager playerManager;
 	private CollisionManager collisionManager;
-	
 	private IOManagement ioManager;
 
 	public GameScreen(SceneManager game, String nextTargetScene) {
@@ -22,16 +23,19 @@ public class GameScreen extends Scene{
 		
 				
 		entityManager = new EntityManager();
-		entityManager.addEntity(); //add the entities into the simulation
-		
 		playerManager = new PlayerManager();
-		playerManager.addPlayers();
-		
-		
-		
 		collisionManager = new CollisionManager(); 
-		
 		ioManager = new IOManagement(); //initialize IO manager
+		
+		
+		playerManager.addPlayers(new Snake("droplet.png", 100, 200, 100 , 3));
+		
+		entityManager.addEntity(new Hotdog("Unhealthy/hot_dog_01.png",100,300,50)); //add the entities into the simulation
+		
+			
+		
+		
+
 	}
 	
 	@Override
@@ -42,7 +46,7 @@ public class GameScreen extends Scene{
 		font.draw(batch, "This is the game scene", 100, 200);
 		batch.end();
 		
-		playerManager.drawPlayers(batch);
+		playerManager.drawPlayers(batch); //draw player
 		entityManager.drawEntity(batch); //draw entities 
 		entityManager.movement(); //move movable entities (AI)
 		ioManager.handleInput(playerManager.getPlayerList()); // handle the IO 

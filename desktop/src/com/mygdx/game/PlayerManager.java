@@ -14,9 +14,9 @@ public class PlayerManager {
 		playerList = new ArrayList<Player>();
 	}
 	
-	public void addPlayers()
+	public void addPlayers(Player p)
 	{
-		playerList.add(new TextureObject("droplet.png", 100, 200, 50));
+		playerList.add(p);
 	}
 	
 	public void drawPlayers(SpriteBatch batch)
@@ -30,5 +30,11 @@ public class PlayerManager {
 	public List<Player> getPlayerList() {
         return playerList;
     }
+	
+	public void update(float delta) {
+	    for (Player player : playerList) {
+	        player.update();
+	    }
+	}
 
 }

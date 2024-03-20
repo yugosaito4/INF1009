@@ -17,10 +17,9 @@ public class EntityManager {
 	
 	
 	
-	public void addEntity()
+	public void addEntity(Entity e)
 	{
-		entityList.add(new TextureObjectStatic("bucket.png",100,300,50));
-		entityList.add(new TextureObjectAI("bucket.png",200,300,1));
+		entityList.add(e);
 	}
 	
 	public void removeEntity(Entity e)

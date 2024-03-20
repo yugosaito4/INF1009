@@ -1,6 +1,8 @@
 package com.mygdx.game;
 
+
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -10,6 +12,8 @@ public abstract class Player implements iMovable , iCollider{
 	private float y;
 	private Texture tex;
 	private float speed;
+	private int currentDirection = Keys.RIGHT;
+
 	
 	public Player()
 	{
@@ -24,6 +28,43 @@ public abstract class Player implements iMovable , iCollider{
 		this.speed = speed;
 		tex = new Texture(texturepath);
 	}
+	
+	
+	
+
+    // Input handling and movement logic
+    public void handleInput() {
+        if (Gdx.input.isKeyPressed(Keys.LEFT) && currentDirection != Keys.RIGHT) {
+            currentDirection = Keys.LEFT;
+        } else if (Gdx.input.isKeyPressed(Keys.RIGHT) && currentDirection != Keys.LEFT) {
+            currentDirection = Keys.RIGHT;
+        } else if (Gdx.input.isKeyPressed(Keys.UP)&& currentDirection != Keys.DOWN) {
+            currentDirection = Keys.UP;
+        } else if (Gdx.input.isKeyPressed(Keys.DOWN)&& currentDirection != Keys.UP) {
+            currentDirection = Keys.DOWN;
+        }
+    }
+
+    public void moveBasedOnDirection() {
+        float deltaTime = Gdx.graphics.getDeltaTime();
+        switch (currentDirection) {
+            case Keys.LEFT:
+                this.x -= this.speed * deltaTime;
+                break;
+            case Keys.RIGHT:
+                this.x += this.speed * deltaTime;
+                break;
+            case Keys.UP:
+                this.y += this.speed * deltaTime;
+                break;
+            case Keys.DOWN:
+                this.y -= this.speed * deltaTime;
+                break;
+        }
+    }
+
+	public abstract void update();
+    public abstract void UserEntityMovement();
 	
 
 	
@@ -77,37 +118,11 @@ public abstract class Player implements iMovable , iCollider{
 	}
 	
 	
-	
-	public abstract void update();
-	
-	//movement logic
-	void movementX(int leftKey, int rightKey) {
-		if (Gdx.input.isKeyPressed(leftKey)) setX(getX() - 200 * Gdx.graphics.getDeltaTime());
-		if (Gdx.input.isKeyPressed(rightKey)) setX(getX() + 200 * Gdx.graphics.getDeltaTime());
-		
-	    // get the width of the texture img
-		float objectWidth = tex.getWidth();
 
-	    float maxX = Gdx.graphics.getWidth() - objectWidth;
-	    if (getX() < 0) {
-	    	setX(0);
-	    } else if (getX() > maxX) {
-	    	setX(maxX);
-	    }
-	}
-	void movementY(int upKey, int downKey) {
-		if (Gdx.input.isKeyPressed(upKey)) setY(getY() + 200 * Gdx.graphics.getDeltaTime());
-		if (Gdx.input.isKeyPressed(downKey)) setY(getY() - 200 * Gdx.graphics.getDeltaTime());
-		
-		float objectHeight = tex.getHeight();
-		
-		float maxY = Gdx.graphics.getHeight() - objectHeight;
-		if (getY() < 0) {
-			setY(0);
-		} else if (getY() > maxY) {
-			setY(maxY);
-		}
-	}
+	
+
+	
+
 
 	//collision logic
 	public Rectangle getBounds() {
