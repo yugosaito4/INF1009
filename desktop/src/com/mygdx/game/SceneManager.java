@@ -28,10 +28,10 @@ public class SceneManager extends Game {
     	
     	addScene("instructions", new Instructions(this));
     	
-    	addScene("toolTip1", new ToolTipScreen(this, "The category for this level is proteins!", "gameScene1"));
-    	addScene("toolTip2", new ToolTipScreen(this, "The category for this level is vegetables!", "gameScene2"));
-    	addScene("toolTip3", new ToolTipScreen(this, "The category for this level is fruits!", "gameScene3"));
-    	addScene("toolTip4", new ToolTipScreen(this, "The category for this level is vegetables and fruits!", "gameScene4"));
+    	addScene("toolTip1", new ToolTipScreen(this,"ToolTips/ToolTip1.png", "gameScene1"));
+    	addScene("toolTip2", new ToolTipScreen(this,"ToolTips/ToolTip2.png", "gameScene2"));
+    	addScene("toolTip3", new ToolTipScreen(this,"ToolTips/ToolTip3.png", "gameScene3"));
+    	addScene("toolTip4", new ToolTipScreen(this,"ToolTips/ToolTip4.png", "gameScene4"));
     	
     	addScene("gameScene1", new GameScreen(this, "endLevel1"));
     	addScene("gameScene2", new GameScreen(this, "endLevel2"));
