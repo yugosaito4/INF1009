@@ -96,8 +96,6 @@ public abstract class Entity implements iCollider {
 	//draw
 	public void draw(SpriteBatch batch)
 	{
-		batch.begin();
-			batch.draw(tex, x, y);
-		batch.end();
+		batch.draw(tex, x, y);
 	}
 }
