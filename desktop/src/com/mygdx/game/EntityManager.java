@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import gameLayer.UnhealthyFood;
+
 import java.util.ArrayList;
 
 public class EntityManager {
@@ -25,6 +27,10 @@ public class EntityManager {
 	public void removeEntity(Entity e)
 	{
 		entityList.remove(e);
+	}
+	
+	public void removeEatenFood() {
+	    entityList.removeIf(entity -> entity instanceof UnhealthyFood && ((UnhealthyFood)entity).isEaten());
 	}
 	
 	public List<Entity> getEntityList() {

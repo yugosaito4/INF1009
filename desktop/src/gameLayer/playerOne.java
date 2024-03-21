@@ -1,24 +1,28 @@
 package gameLayer;
 
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.Player;
+import com.mygdx.game.iCollider;
 
 public class playerOne extends Player {
 	
-private int health;
 private boolean isMouthOpen = false; // New attribute to track the mouth state
 private float animationTimer = 0; // Timer to control animation state change
 private float animationInterval = 0.25f; // Interval in seconds to change mouth state
-private Texture openMouthTexture;
+private Texture upOpen, downOpen, leftOpen, rightOpen; // Open textures for each direction
 private Texture closedMouthTexture;
 	
-	public playerOne(String openMouthPath, String closedMouthPath, float x, float y, float s , int hp)
+	public playerOne(String baseTexturePath, String closedMouthPath, float x, float y, float s , int hp)
 	{
-		super(closedMouthPath, x, y, s);
-		this.setHealth(hp);
-		this.openMouthTexture = new Texture(openMouthPath);
-	    // The closed mouth texture is already loaded by the super constructor.
-	    this.closedMouthTexture = this.getTex(); // Assuming getTex() returns the current texture.
+		super(closedMouthPath, x, y, s , hp);
+	    this.closedMouthTexture = this.getTex(); 
+	    
+	    //load directional textures
+	    this.upOpen = new Texture(baseTexturePath+ "Up.png");
+	    this.downOpen = new Texture(baseTexturePath + "Down.png");
+        this.leftOpen = new Texture(baseTexturePath + "Left.png");
+        this.rightOpen = new Texture(baseTexturePath + "Open.png");
 	}
 	
 
@@ -29,34 +33,53 @@ private Texture closedMouthTexture;
 	
     
    
-    @Override
+	@Override
     public void update(float deltaTime) {
-        // Update the animation timer
         animationTimer += deltaTime;
-        
-        // Check if it's time to toggle the mouth state
+
         if(animationTimer >= animationInterval) {
             isMouthOpen = !isMouthOpen;
-            animationTimer = 0; // Reset the timer
-            
-            // Update the image based on the mouth state
-            if(isMouthOpen) {
-                // Set the sprite or texture to the open mouth image
-                this.setTex(openMouthTexture);
-            } else {
-                // Set the sprite or texture to the closed mouth image
-                this.setTex(closedMouthTexture);
-            }
+            animationTimer = 0;
+            updateTextureBasedOnDirectionAndMouthState();
         }
     }
-    
-	public int getHealth() {
-		return health;
-	}
 
-	public void setHealth(int health) {
-		this.health = health;
-	}
+    private void updateTextureBasedOnDirectionAndMouthState() {
+        Texture newTexture;
+        if (isMouthOpen) {
+            // Select the correct open texture based on direction
+            switch (getCurrentDirection()) { //get the current direction from sueperclass
+                case Keys.UP:
+                    newTexture = upOpen;
+                    break;
+                case Keys.DOWN:
+                    newTexture = downOpen;
+                    break;
+                case Keys.LEFT:
+                    newTexture = leftOpen;
+                    break;
+                case Keys.RIGHT:
+                    newTexture = rightOpen;
+                    break;
+                default:
+                    newTexture = closedMouthTexture;
+                    break;
+            }
+        } else {
+            // Use the single closed-mouth texture
+            newTexture = closedMouthTexture;
+        }
+        this.setTex(newTexture);
+    }
+    
+    
+    public void checkCollision(iCollider other)
+    {
+    	if (other instanceof UnhealthyFood) {
+            this.setHealth(this.getHealth() - 1);
+           
+        }
+    }
 
 
 

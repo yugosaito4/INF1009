@@ -28,9 +28,9 @@ public class GameScreen extends Scene{
 		ioManager = new IOManagement(); //initialize IO manager
 		
 		
-		playerManager.addPlayers(new playerOne("playerSkin/Open.png","playerSkin/Close.png", 100, 200, 100 , 3));
+		playerManager.addPlayers(new playerOne("playerSkin/","playerSkin/Close.png", 100, 200, 100 , 3));
 		
-		entityManager.addEntity(new Hotdog("Unhealthy/hot_dog_01.png",100,300,50)); //add the entities into the simulation
+		entityManager.addEntity(new UnhealthyFood("Unhealthy/hot_dog_01.png",100,300,50)); //add the entities into the simulation
 		
 			
 		
@@ -40,16 +40,25 @@ public class GameScreen extends Scene{
 	
 	@Override
 	public void render(float delta ) {
+		
+		//drawing logic
 		ScreenUtils.clear(0,0,0.2f,1);
 		batch.begin();
 		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		font.draw(batch, "This is the game scene", 100, 200);
+		Player player = playerManager.getPlayerList().get(0); // Assuming there's at least one player
+        font.draw(batch, "Health: " + player.getHealth(), 10, Gdx.graphics.getHeight() - 10);
 		playerManager.drawPlayers(batch); //draw player
 		entityManager.drawEntity(batch); //draw entities 
 		batch.end();
 		
+		//player update logic
 		playerManager.update(delta);
+		
+		//entity update logic
 		entityManager.movement(); //move movable entities (AI)
+		entityManager.removeEatenFood();
+		
 		ioManager.handleInput(playerManager.getPlayerList()); // handle the IO 
 		collisionManager.checkCollisionList(playerManager.getPlayerList(),entityManager.getEntityList());//handle the collision
 		

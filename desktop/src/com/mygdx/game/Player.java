@@ -12,6 +12,7 @@ public abstract class Player implements iMovable , iCollider{
 	private float y;
 	private Texture tex;
 	private float speed;
+	private int health;
 	private int currentDirection = Keys.RIGHT;
 
 	
@@ -21,14 +22,14 @@ public abstract class Player implements iMovable , iCollider{
 		
 	}
 	
-	public Player(String texturepath, float x, float y, float speed)
+	public Player(String texturepath, float x, float y, float speed , int health)
 	{
 		this.x = x;
 		this.y = y;
 		this.speed = speed;
+		this.setHealth(health);
 		tex = new Texture(texturepath);
 	}
-	
 	
 	
 
@@ -134,6 +135,14 @@ public abstract class Player implements iMovable , iCollider{
 		this.tex = tex;
 	}
 	
+	public int getCurrentDirection() {
+        return currentDirection;
+    }
+
+    public void setCurrentDirection(int currentDirection) {
+        this.currentDirection = currentDirection;
+    }
+	
 	
 
 	
@@ -148,7 +157,7 @@ public abstract class Player implements iMovable , iCollider{
 	}
 	
 	public void checkCollision(iCollider other) {
-	    System.out.println(this.getClass().getSimpleName() + " collided with " + other.getClass().getSimpleName());
+
 	}
 
 	
@@ -156,5 +165,13 @@ public abstract class Player implements iMovable , iCollider{
 	public void draw(SpriteBatch batch)
 	{
 		batch.draw(tex, x, y);
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
 	}
 }
