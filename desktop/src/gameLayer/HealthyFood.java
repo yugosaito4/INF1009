@@ -4,11 +4,11 @@ import com.mygdx.game.Entity;
 import com.mygdx.game.Player;
 import com.mygdx.game.iCollider;
 
-public class UnhealthyFood extends Entity{
+public class HealthyFood extends Entity{
 	
-	private boolean eaten = false;
+private boolean eaten = false;
 	
-	public UnhealthyFood(String imagePath, float x, float y, float s) {
+	public HealthyFood(String imagePath, float x, float y, float s) {
 		super(imagePath, x, y, s);
 	}
 

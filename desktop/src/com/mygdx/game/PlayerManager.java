@@ -36,5 +36,14 @@ public class PlayerManager {
 	        player.update(delta);
 	    }
 	}
+	
+	public int getHealth(int index)
+	{
+		if (!playerList.isEmpty()) {
+            return playerList.get(index).getHealth();
+        } else {
+            return 0; // Or some other default value indicating no players are available
+        }
+	}
 
 }

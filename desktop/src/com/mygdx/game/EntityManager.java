@@ -30,7 +30,7 @@ public class EntityManager {
 	}
 	
 	public void removeEatenFood() {
-	    entityList.removeIf(entity -> entity instanceof UnhealthyFood && ((UnhealthyFood)entity).isEaten());
+		entityList.removeIf(Entity::ToRemove); //remove entity
 	}
 	
 	public List<Entity> getEntityList() {

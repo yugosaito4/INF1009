@@ -79,7 +79,7 @@ public abstract class Entity implements iCollider {
 	
 	
 	public abstract void update();
-	
+	public abstract boolean ToRemove();
 
 
 	//collision logic

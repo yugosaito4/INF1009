@@ -31,9 +31,11 @@ public class GameScreen extends Scene{
 		playerManager.addPlayers(new playerOne("playerSkin/","playerSkin/Close.png", 100, 200, 100 , 3));
 		
 		entityManager.addEntity(new UnhealthyFood("Unhealthy/hot_dog_01.png",100,300,50)); //add the entities into the simulation
-		
-			
-		
+		entityManager.addEntity(new UnhealthyFood("Unhealthy/pizza_01.png",100,400,50)); //add the entities into the simulation
+		entityManager.addEntity(new UnhealthyFood("Unhealthy/cupcake.png",200,400,50)); //add the entities into the simulation
+		entityManager.addEntity(new HealthyFood("Fruits/apple.png",100,100,50)); //add the entities into the simulation
+		entityManager.addEntity(new HealthyFood("Vegetables/bok_choy.png",200,300,50)); //add the entities into the simulation
+		entityManager.addEntity(new AIEnemy("Unhealthy/popsicle.png", 50, 200, 1));
 		
 
 	}
@@ -45,20 +47,24 @@ public class GameScreen extends Scene{
 		ScreenUtils.clear(0,0,0.2f,1);
 		batch.begin();
 		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		font.draw(batch, "This is the game scene", 100, 200);
-		Player player = playerManager.getPlayerList().get(0); // Assuming there's at least one player
-        font.draw(batch, "Health: " + player.getHealth(), 10, Gdx.graphics.getHeight() - 10);
+        font.draw(batch, "Health: " + playerManager.getHealth(0), 10, Gdx.graphics.getHeight() - 10); //getting health for first player
 		playerManager.drawPlayers(batch); //draw player
 		entityManager.drawEntity(batch); //draw entities 
 		batch.end();
 		
 		//player update logic
 		playerManager.update(delta);
+		if(playerManager.getHealth(0) <=0)
+		{
+			game.setScene(nextTargetScene); //change to gameover, with retry
+		}
 		
 		//entity update logic
 		entityManager.movement(); //move movable entities (AI)
-		entityManager.removeEatenFood();
+		entityManager.removeEatenFood(); //remove entity during run time
 		
+		
+		//IO and collision logic
 		ioManager.handleInput(playerManager.getPlayerList()); // handle the IO 
 		collisionManager.checkCollisionList(playerManager.getPlayerList(),entityManager.getEntityList());//handle the collision
 		

@@ -142,13 +142,18 @@ public abstract class Player implements iMovable , iCollider{
     public void setCurrentDirection(int currentDirection) {
         this.currentDirection = currentDirection;
     }
+    
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
 	
 	
 
 	
-
-	
-
 
 	//collision logic
 	public Rectangle getBounds() {
@@ -166,12 +171,8 @@ public abstract class Player implements iMovable , iCollider{
 	{
 		batch.draw(tex, x, y);
 	}
+	
 
-	public int getHealth() {
-		return health;
-	}
 
-	public void setHealth(int health) {
-		this.health = health;
-	}
+
 }

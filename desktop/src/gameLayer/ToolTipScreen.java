@@ -1,7 +1,6 @@
 package gameLayer;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -30,8 +29,8 @@ public class ToolTipScreen extends Scene{
 
         // Create and set up the start game button
         startGameButton = new TextButton("Start Game", skin);
-        startGameButton.setPosition(270, 100); // Adjust position to match your needs
-        startGameButton.setSize(200, 50); // Adjust size to match your needs
+        startGameButton.setPosition(270, 100); 
+        startGameButton.setSize(200, 50); 
 
         // Add the button to the stage
         stage.addActor(startGameButton);
