@@ -33,7 +33,7 @@ public class PlayerManager {
 	
 	public void update(float delta) {
 	    for (Player player : playerList) {
-	        player.update();
+	        player.update(delta);
 	    }
 	}
 

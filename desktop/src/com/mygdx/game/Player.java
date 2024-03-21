@@ -80,7 +80,7 @@ public abstract class Player implements iMovable , iCollider{
 		}
     }
 
-	public abstract void update();
+	public abstract void update(float deltaTime);
     public abstract void UserEntityMovement();
 	
 

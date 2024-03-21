@@ -28,7 +28,7 @@ public class GameScreen extends Scene{
 		ioManager = new IOManagement(); //initialize IO manager
 		
 		
-		playerManager.addPlayers(new Snake("droplet.png", 100, 200, 100 , 3));
+		playerManager.addPlayers(new playerOne("playerSkin/Open.png","playerSkin/Close.png", 100, 200, 100 , 3));
 		
 		entityManager.addEntity(new Hotdog("Unhealthy/hot_dog_01.png",100,300,50)); //add the entities into the simulation
 		
@@ -48,7 +48,7 @@ public class GameScreen extends Scene{
 		entityManager.drawEntity(batch); //draw entities 
 		batch.end();
 		
-
+		playerManager.update(delta);
 		entityManager.movement(); //move movable entities (AI)
 		ioManager.handleInput(playerManager.getPlayerList()); // handle the IO 
 		collisionManager.checkCollisionList(playerManager.getPlayerList(),entityManager.getEntityList());//handle the collision
