@@ -4,12 +4,23 @@ import com.mygdx.game.Entity;
 import com.mygdx.game.Player;
 import com.mygdx.game.iCollider;
 
-public class HealthyFood extends Entity{
+public class Food extends Entity{
 	
-private boolean eaten = false;
-	
-	public HealthyFood(String imagePath, float x, float y, float s) {
+	private boolean eaten = false;
+
+	protected FoodType foodType;
+		
+	public enum FoodType{
+		PROTEIN, VEGETABLE, FRUIT, UNHEALTHY
+	}
+
+	public Food(String imagePath, float x, float y, float s, FoodType foodType) {
 		super(imagePath, x, y, s);
+		this.foodType = foodType;
+    }
+
+	public FoodType getFoodType(){
+		return foodType;
 	}
 
 	@Override

@@ -4,12 +4,12 @@ import com.mygdx.game.Entity;
 import com.mygdx.game.Player;
 import com.mygdx.game.iCollider;
 
-public class Fruits extends HealthyFood{
+public class Fruits extends Food{
 	
 //private boolean eaten = false;
 	
 	public Fruits(String imagePath, float x, float y, float s) {
-		super(imagePath, x, y, s);
+		super(imagePath, x, y, s, FoodType.FRUIT);
 	}
 
 

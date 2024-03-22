@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.*;
 
+import gameLayer.Food.FoodType;
+
 public class GameScreen extends Scene{
 	
 	
@@ -33,8 +35,8 @@ public class GameScreen extends Scene{
 		entityManager.addEntity(new UnhealthyFood("Unhealthy/hot_dog_01.png",100,300,50)); //add the entities into the simulation
 		entityManager.addEntity(new UnhealthyFood("Unhealthy/pizza_01.png",100,400,50)); //add the entities into the simulation
 		entityManager.addEntity(new UnhealthyFood("Unhealthy/cupcake.png",200,400,50)); //add the entities into the simulation
-		entityManager.addEntity(new HealthyFood("Fruits/apple.png",100,100,50)); //add the entities into the simulation
-		entityManager.addEntity(new HealthyFood("Vegetables/bok_choy.png",200,300,50)); //add the entities into the simulation
+		entityManager.addEntity(new Fruits("Fruits/apple.png",100,100,50)); //add the entities into the simulation
+		entityManager.addEntity(new Vegetable("Vegetables/bok_choy.png",200,300,50)); //add the entities into the simulation
 		entityManager.addEntity(new AIEnemy("Unhealthy/popsicle.png", 50, 200, 1));
 		
 
