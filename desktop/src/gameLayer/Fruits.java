@@ -1,6 +1,5 @@
 package gameLayer;
 
-import com.mygdx.game.Entity;
 import com.mygdx.game.Player;
 import com.mygdx.game.iCollider;
 

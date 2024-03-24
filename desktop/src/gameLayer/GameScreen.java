@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.*;
 
-import gameLayer.Food.FoodType;
+
 
 public class GameScreen extends Scene {
 
@@ -60,16 +60,14 @@ public class GameScreen extends Scene {
 		}
 
 		if (playerManager.getScore(0) >= 3) {
+			playerManager.setScore(0);
 			game.setScene(nextTargetScene); // change to gameover, with retry
 		}
 
 		// entity update logic
-
-		//entityManager.movement(); // move movable entities (AI)
 		entityManager.removeEatenFood(); // remove entity during run time
 
 		entityManager.movement(); // move movable entities (AI)
-		//entityManager.removeEatenFood(); // remove entity during run time
 
 		spawnManager.removeEatenFood();
 		

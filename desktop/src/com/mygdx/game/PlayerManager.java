@@ -54,5 +54,14 @@ public class PlayerManager {
             return 0; // Or some other default value indicating no players are available
         }
 	}
+	
+	public void setScore(int index)
+	{
+		if (!playerList.isEmpty()) {
+            playerList.get(0).setScore(0);
+		}
+	}
+	
+
 
 }

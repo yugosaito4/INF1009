@@ -25,7 +25,7 @@ public class LifecycleManager extends ApplicationAdapter {
 		sceneManager = new SceneManager();
 	    entityManager = new EntityManager();
 	    playerManager = new PlayerManager();
-	    collisionManager = new CollisionManager();
+	    collisionManager = new CollisionManager(sceneManager);
 	    ioManager = new IOManagement();
 	    spawnManager = new SpawnManager(entityManager);
 		

@@ -1,7 +1,6 @@
 package gameLayer;
 
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.Player;
 import com.mygdx.game.SceneManager;
@@ -79,7 +78,6 @@ private SceneManager sceneManager;
     //collide with unhealthy food
     public void checkCollision(iCollider other) {
         String currentScene = sceneManager.getCurrentSceneName();
-        System.out.println(currentScene);
 
         if (other instanceof UnhealthyFood) {
             this.setHealth(this.getHealth() - 1);
