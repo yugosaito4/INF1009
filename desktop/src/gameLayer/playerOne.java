@@ -1,8 +1,10 @@
 package gameLayer;
 
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.Player;
+import com.mygdx.game.SceneManager;
 import com.mygdx.game.iCollider;
 
 public class playerOne extends Player {
@@ -12,8 +14,9 @@ private float animationTimer = 0; // Timer to control animation state change
 private float animationInterval = 0.25f; // Interval in seconds to change mouth state
 private Texture upOpen, downOpen, leftOpen, rightOpen; // Open mouth Textures for the player
 private Texture closedMouthTexture;
+private SceneManager sceneManager;
 	
-	public playerOne(String baseTexturePath, String closedMouthPath, float x, float y, float s , int hp)
+	public playerOne(String baseTexturePath, String closedMouthPath, float x, float y, float s , int hp, SceneManager sceneManager)
 	{
 		super(closedMouthPath, x, y, s , hp);
 	    this.closedMouthTexture = this.getTex(); //initial texture is closed mouth
@@ -23,8 +26,7 @@ private Texture closedMouthTexture;
 	    this.downOpen = new Texture(baseTexturePath + "Down.png");
         this.leftOpen = new Texture(baseTexturePath + "Left.png");
         this.rightOpen = new Texture(baseTexturePath + "Open.png");
-
-        		
+        this.sceneManager = sceneManager;        
 	}
 	
 
@@ -75,21 +77,27 @@ private Texture closedMouthTexture;
     }
     
     //collide with unhealthy food
-    public void checkCollision(iCollider other)
-    {
-    	if (other instanceof UnhealthyFood) {
+    public void checkCollision(iCollider other) {
+        String currentScene = sceneManager.getCurrentSceneName();
+        System.out.println(currentScene);
+
+        if (other instanceof UnhealthyFood) {
             this.setHealth(this.getHealth() - 1);
+        } 
+        else if (other instanceof AIEnemy) {
+            this.setHealth(this.getHealth() - 3);
+        } 
+        else if ("gameScene1".equals(currentScene) && other instanceof Protein){        	
+            this.setScore(this.getScore() + 1);
         }
-    	else if(other instanceof AIEnemy)
-    	{
-    		this.setHealth(this.getHealth() - 3);
-    	}
-
+        else if ("gameScene2".equals(currentScene) && other instanceof Vegetable){
+            this.setScore(this.getScore() + 1);
+        }
+        else if ("gameScene3".equals(currentScene) && other instanceof Fruits){
+            this.setScore(this.getScore() + 1);
+        }
+        else if ("gameScene4".equals(currentScene) && other instanceof Fruits || other instanceof Vegetable || other instanceof Protein){
+            this.setScore(this.getScore() + 1);
+        }
     }
-    
-    
-
-
-
-
 }

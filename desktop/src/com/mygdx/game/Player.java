@@ -13,6 +13,7 @@ public abstract class Player implements iMovable , iCollider{
 	private Texture tex;
 	private float speed;
 	private int health;
+	private int score;
 	private int currentDirection = Keys.RIGHT;
 
 	
@@ -151,7 +152,13 @@ public abstract class Player implements iMovable , iCollider{
 		this.health = health;
 	}
 	
-	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
 
 	
 
