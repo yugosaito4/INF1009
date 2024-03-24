@@ -18,22 +18,20 @@ public class GameScreen extends Scene {
 	private IOManagement ioManager;
 	private SpawnManager spawnManager;
 	private float timer = 0;
+
 	private static final float SPAWN_INTERVAL = 5f; // Interval in seconds
 
-	public GameScreen(SceneManager game, String nextTargetScene) {
+	public GameScreen(SceneManager game, String nextTargetScene ,EntityManager em , PlayerManager pm , SpawnManager spawner , CollisionManager cm, IOManagement im) {
 		super(game, "bg2.jpg");
 		font = new BitmapFont();
 		this.nextTargetScene = nextTargetScene;
-
-		entityManager = new EntityManager();
-		playerManager = new PlayerManager();
-		collisionManager = new CollisionManager();
-		ioManager = new IOManagement(); // initialize IO manager
-		spawnManager = new SpawnManager(entityManager);
-
-		playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 100, 3));
-
-		spawnManager.loadEntity();
+        this.entityManager = em;
+        this.playerManager = pm;
+        this.spawnManager = spawner;
+        this.collisionManager = cm;
+        this.ioManager = im;
+		this.playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 100, 3));
+		this.spawnManager.loadEntity();
 		
 	}
 
@@ -56,7 +54,7 @@ public class GameScreen extends Scene {
 		}
 
 		// entity update logic
-		entityManager.movement(); // move movable entities (AI)
+		//entityManager.movement(); // move movable entities (AI)
 		entityManager.removeEatenFood(); // remove entity during run time
 		spawnManager.removeEatenFood();
 		

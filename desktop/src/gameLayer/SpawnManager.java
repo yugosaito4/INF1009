@@ -64,7 +64,7 @@ public class SpawnManager {
         entityManager.addEntity(new Protein("Proteins/Fish.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
         entityManager.addEntity(new Protein("Proteins/Steak.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
         entityManager.addEntity(new Protein("Proteins/FishSteak.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        entityManager.addEntity(new AIEnemy("Unhealthy/popsicle.png", 200, 300, 5));
+        //entityManager.addEntity(new AIEnemy("Unhealthy/popsicle.png", 200, 300, 5));
     }
 
 	

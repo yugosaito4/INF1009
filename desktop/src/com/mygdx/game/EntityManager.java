@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import gameLayer.UnhealthyFood;
-
 import java.util.ArrayList;
 
 public class EntityManager {

@@ -7,6 +7,7 @@ import gameLayer.EndGameScreen;
 import gameLayer.EndLevelScreen;
 import gameLayer.GameScreen;
 import gameLayer.Instructions;
+import gameLayer.SpawnManager;
 import gameLayer.StartScreen;
 import gameLayer.ToolTipScreen;
 
@@ -22,8 +23,7 @@ public class SceneManager extends Game {
         scenes = new HashMap<>();//create hashmaps to store sceneName and Scene. Allow for easy identification
     }
 
-    @Override
-    public void create() {
+    public void createScene(EntityManager em , PlayerManager pm , SceneManager sm, SpawnManager spawner , CollisionManager cm, IOManagement im) {
     	addScene("startScene", new StartScreen(this));
     	
     	addScene("instructions", new Instructions(this));
@@ -33,10 +33,10 @@ public class SceneManager extends Game {
     	addScene("toolTip3", new ToolTipScreen(this,"ToolTips/ToolTip3.png", "gameScene3"));
     	addScene("toolTip4", new ToolTipScreen(this,"ToolTips/ToolTip4.png", "gameScene4"));
     	
-    	addScene("gameScene1", new GameScreen(this, "endLevel1"));
-    	addScene("gameScene2", new GameScreen(this, "endLevel2"));
-    	addScene("gameScene3", new GameScreen(this, "endLevel3"));
-    	addScene("gameScene4", new GameScreen(this, "endLevel4"));
+    	addScene("gameScene1", new GameScreen(this, "endLevel1" , em,pm,spawner,cm,im));
+    	addScene("gameScene2", new GameScreen(this, "endLevel2" , em,pm,spawner,cm,im));
+    	addScene("gameScene3", new GameScreen(this, "endLevel3" ,em,pm,spawner,cm,im));
+    	addScene("gameScene4", new GameScreen(this, "endLevel4",  em,pm,spawner,cm,im));
     	
     	addScene("endLevel1", new EndLevelScreen(this, "Congrats on completing Level 1!", "toolTip2"));
     	addScene("endLevel2", new EndLevelScreen(this, "Congrats on completing Level 2!", "toolTip3"));
@@ -74,4 +74,10 @@ public class SceneManager extends Game {
             }
         }
     }
+
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
+		
+	}
 }
