@@ -156,7 +156,7 @@ public abstract class Player implements iMovable , iCollider{
 		return score;
 	}
 
-	public void setScore(int scores) {
+	public void setScore(int score) {
 		this.score = score;
 	}
 

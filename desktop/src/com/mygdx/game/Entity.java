@@ -89,7 +89,7 @@ public abstract class Entity implements iCollider {
 	}
 	
 	public void checkCollision(iCollider other) {
-	    //System.out.println(this.getClass().getSimpleName() + " collided with " + other.getClass().getSimpleName());
+//	    System.out.println(this.getClass().getSimpleName() + " collided with " + other.getClass().getSimpleName());
 	}
 
 	

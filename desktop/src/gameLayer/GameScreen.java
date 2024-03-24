@@ -48,7 +48,6 @@ public class GameScreen extends Scene {
 		font.draw(batch, "Health: " + playerManager.getHealth(0), 10, Gdx.graphics.getHeight() - 10); // getting health for first player
 		font.draw(batch, "Score: " + playerManager.getScore	(0) + "/" + maxScore, 10, Gdx.graphics.getHeight() - 40); // getting score for first player
 		playerManager.drawPlayers(batch); // draw player
-//		spawnManager.spawnAIEnemy(batch);
 		batch.end();
 
 		// player update logic
@@ -67,12 +66,12 @@ public class GameScreen extends Scene {
 		spawnManager.removeEatenFood();
 		
 		// spawn logic
-		spawnManager.spawnRandom(entityManager.getEntityList());
-		spawnManager.spawn(batch);
+		spawnManager.spawn(batch, spawnManager.getSpawnedEntityList());
 
 		// IO and collision logic
 		ioManager.handleInput(playerManager.getPlayerList()); // handle the IO
 		collisionManager.checkCollisionList(playerManager.getPlayerList(), spawnManager.getSpawnedEntityList());// handle the collision
+
 		timer += delta;
 
 		// Check if it's time to spawn and despawn entities

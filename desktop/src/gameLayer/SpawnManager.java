@@ -69,30 +69,55 @@ public class SpawnManager {
 
 	
 	public void spawnAndDespawn(SpriteBatch batch) {
-		spawnRandom(entityManager.getEntityList());
+//		spawnRandom(entityManager.getEntityList());
 		despawn();
-		spawn(batch);	
+		spawnEntityList();
+		spawn(batch, getSpawnedEntityList());	
 	}
 	
-	public void spawnRandom(List<Entity> entities) {
-//	     Keep spawning until spawnList has maxEntity entities
-			for (Entity entity: entities) {
-				if (entity instanceof AIEnemy) {
-					spawnList.add(entity);
-					break;
-				}       
-			}
+	public void spawnEntityList(){
+        List<Entity> entityList = entityManager.getEntityList();
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
 
-			
-		    while (spawnList.size() < maxEntity) {
-		        int randIndex = rand.nextInt(entities.size());
-		        spawnList.add(entities.get(randIndex));
+        float minX = 0; // Minimum X coordinate
+        float maxX = screenWidth; // Maximum X coordinate
+        float minY = 0; // Minimum Y coordinate
+        float maxY = screenHeight; // Maximum Y coordinate
 
-		    }
-	}
+        // Adjust the range to prevent entities from appearing near the edges
+        minX += 25; // Leave some margin on the left    
+        maxX -= 25; // Leave some margin on the right
+        minY += 25; // Leave some margin at the bottom
+        maxY -= 25; // Leave some margin at the top
+
+        // Add Popsicle entity to the spawnList
+        for (Entity entity: entityList) {
+			if (entity instanceof AIEnemy) {
+				spawnList.add(entity);
+				break;
+			}       
+		}
+
+        while (spawnList.size() < maxEntity) {
+	        int randIndex = rand.nextInt(entityList.size());
+	        spawnList.add(entityList.get(randIndex));
+	    }
+        
+        // If entity x y same, randomize again
+        for (int i = 0; i < spawnList.size() - 1; i++) {
+            for (int j = i + 1; j < spawnList.size(); j++) {
+                if (spawnList.get(i).getX() == spawnList.get(j).getX() && 
+                    spawnList.get(i).getY() == spawnList.get(j).getY()) {
+                    spawnList.get(i).setX(rand.nextFloat() * (maxX - minX) + minX);
+                    spawnList.get(i).setY(rand.nextFloat() * (maxY - minY) + minY);
+                }
+            }
+        }
+    }
 
 
-	public void spawn(SpriteBatch batch) {
+	public void spawn(SpriteBatch batch, List<Entity> spawnList) {
 		batch.begin();
 		for (Entity entity : spawnList) {
 			entity.draw(batch); // Draw each spawned entity
@@ -101,12 +126,13 @@ public class SpawnManager {
 		batch.end();
 	}
 
+	public void removeEatenFood() {
+		spawnList.removeIf(Entity::ToRemove); //remove entity
+	}
+	
+
 	private void despawn() {
 		// Remove all entities from the list
 		spawnList.removeAll(spawnList);
-	}
-	
-	public void removeEatenFood() {
-		spawnList.removeIf(Entity::ToRemove); //remove entity
 	}
 }

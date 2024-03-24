@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Rectangle;
 
 
 public class CollisionManager {
-    
     private SceneManager sceneManager;
 
     public CollisionManager(SceneManager sceneManager){
@@ -19,6 +18,7 @@ public class CollisionManager {
             Object objA = objects.get(i);
             if (objA instanceof iCollider) {
                 iCollider collidableA = (iCollider) objA;
+                
                 for (int j = i + 1; j < objects.size(); j++) {
                     Object objB = objects.get(j);
                     if (objB instanceof iCollider) {

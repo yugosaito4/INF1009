@@ -87,7 +87,7 @@ private SceneManager sceneManager;
         else if (other instanceof AIEnemy) {
             this.setHealth(this.getHealth() - 3);
         } 
-        else if ("gameScene1".equals(currentScene) && other instanceof Protein){
+        else if ("gameScene1".equals(currentScene) && other instanceof Protein){        	
             this.setScore(this.getScore() + 1);
         }
         else if ("gameScene2".equals(currentScene) && other instanceof Vegetable){
