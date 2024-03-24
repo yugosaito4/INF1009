@@ -100,9 +100,12 @@ public class SpawnManager {
 		}
 
         while (spawnList.size() < maxEntity) {
-	        int randIndex = rand.nextInt(entityList.size());
-	        spawnList.add(entityList.get(randIndex));
-	    }
+            int randIndex = rand.nextInt(entityList.size());
+            Entity randEntity = entityList.get(randIndex);
+            if (!spawnList.contains(randEntity)) {
+                spawnList.add(randEntity);
+            }
+        }
         
         // If entity x y same, randomize again
         for (int i = 0; i < spawnList.size() - 1; i++) {
@@ -118,6 +121,7 @@ public class SpawnManager {
 
 
 	public void spawn(SpriteBatch batch, List<Entity> spawnList) {
+		System.out.println(spawnList.size());
 		batch.begin();
 		for (Entity entity : spawnList) {
 			entity.draw(batch); // Draw each spawned entity
