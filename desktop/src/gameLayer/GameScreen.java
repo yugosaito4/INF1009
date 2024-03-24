@@ -18,6 +18,7 @@ public class GameScreen extends Scene {
 	private IOManagement ioManager;
 	private SpawnManager spawnManager;
 	private float timer = 0;
+	private int maxScore = 3;
 	private static final float SPAWN_INTERVAL = 5f; // Interval in seconds
 
 	public GameScreen(SceneManager game, String nextTargetScene) {
@@ -27,14 +28,14 @@ public class GameScreen extends Scene {
 
 		entityManager = new EntityManager();
 		playerManager = new PlayerManager();
-		collisionManager = new CollisionManager();
+		collisionManager = new CollisionManager(game);
 		ioManager = new IOManagement(); // initialize IO manager
 		spawnManager = new SpawnManager(entityManager);
 
-		playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 100, 3));
+		playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 100, 3, game));
 
 		spawnManager.loadEntity();
-		
+		spawnManager.spawnEntityList();
 	}
 
 	@Override
@@ -45,6 +46,7 @@ public class GameScreen extends Scene {
 		batch.begin();
 		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		font.draw(batch, "Health: " + playerManager.getHealth(0), 10, Gdx.graphics.getHeight() - 10); // getting health for first player
+		font.draw(batch, "Score: " + playerManager.getScore	(0) + "/" + maxScore, 10, Gdx.graphics.getHeight() - 40); // getting score for first player
 		playerManager.drawPlayers(batch); // draw player
 //		spawnManager.spawnAIEnemy(batch);
 		batch.end();
@@ -55,9 +57,13 @@ public class GameScreen extends Scene {
 			game.setScene(nextTargetScene); // change to gameover, with retry
 		}
 
+		if (playerManager.getScore(0) >= 3) {
+			game.setScene(nextTargetScene); // change to gameover, with retry
+		}
+
 		// entity update logic
 		entityManager.movement(); // move movable entities (AI)
-		entityManager.removeEatenFood(); // remove entity during run time
+		//entityManager.removeEatenFood(); // remove entity during run time
 		spawnManager.removeEatenFood();
 		
 		// spawn logic

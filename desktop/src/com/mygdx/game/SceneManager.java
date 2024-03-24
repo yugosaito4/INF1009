@@ -63,7 +63,19 @@ public class SceneManager extends Game {
             }
             currentScreen = scenes.get(name);
             setScreen(currentScreen);
+            System.out.println(name);
         }
+    }
+
+    public String getCurrentSceneName() { 
+        if (currentScreen != null) { 
+            for (Map.Entry<String, Screen> entry : scenes.entrySet()) { 
+                if (entry.getValue() == currentScreen) { 
+                    return entry.getKey(); 
+                } 
+            } 
+        } 
+        return null; 
     }
 
     @Override

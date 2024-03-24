@@ -8,6 +8,12 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class CollisionManager {
     
+    private SceneManager sceneManager;
+
+    public CollisionManager(SceneManager sceneManager){
+        this.sceneManager = sceneManager;
+    }
+    
     public void checkCollisions(List<?> objects) {
         for (int i = 0; i < objects.size(); i++) {
             Object objA = objects.get(i);
