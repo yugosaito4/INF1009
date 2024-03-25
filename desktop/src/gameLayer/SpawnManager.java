@@ -7,10 +7,8 @@ import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.AIMovable;
 import com.mygdx.game.Entity;
 import com.mygdx.game.EntityManager;
-import com.mygdx.game.Player;
 
 public class SpawnManager {
 	private int maxEntity = 6;

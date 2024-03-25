@@ -18,9 +18,9 @@ public class playerOne extends Player {
     private SceneManager sceneManager;
     ArrayList<Object> eatenFoodType = new ArrayList<Object>();
 
-    public playerOne(String baseTexturePath, String closedMouthPath, float x, float y, float s, int hp,
+    public playerOne(String baseTexturePath, String closedMouthPath, float x, float y, float s, int hp, int score,
             SceneManager sceneManager) {
-        super(closedMouthPath, x, y, s, hp);
+        super(closedMouthPath, x, y, s, hp, score);
         this.closedMouthTexture = this.getTex(); // initial texture is closed mouth
 
         // load directional textures
@@ -76,7 +76,7 @@ public class playerOne extends Player {
         this.setTex(newTexture);
     }
 
-    // collide with unhealthy food
+    // collide with food
     public void checkCollision(iCollider other) {
         String currentScene = sceneManager.getCurrentSceneName();
 

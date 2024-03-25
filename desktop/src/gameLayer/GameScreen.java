@@ -33,7 +33,7 @@ public class GameScreen extends Scene {
         this.spawnManager = spawner;
         this.collisionManager = cm;
         this.ioManager = im;
-		this.playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 100, 3, game));
+		this.playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 100, 3, 0, game));
 		this.spawnManager.loadEntity();
 		this.spawnManager.spawnEntityList();
 
@@ -49,7 +49,7 @@ public class GameScreen extends Scene {
 		batch.begin();
 		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		font.draw(batch, "Health: " + playerManager.getHealth(0), 10, Gdx.graphics.getHeight() - 10); // getting health for first player
-		font.draw(batch, "Score: " + playerManager.getScore	(0) + "/" + maxScore, 10, Gdx.graphics.getHeight() - 40); // getting score for first player
+		font.draw(batch, "Score: " + playerManager.getScore(0) + "/" + maxScore, 10, Gdx.graphics.getHeight() - 40); // getting score for first player
 		playerManager.drawPlayers(batch); // draw player
 		batch.end();
 
@@ -60,15 +60,12 @@ public class GameScreen extends Scene {
 		}
 
 		if (playerManager.getScore(0) >= 3) {
-			playerManager.setScore(0);
+			playerManager.resetScore(0);
 			game.setScene(nextTargetScene); // change to gameover, with retry
 		}
 
 		// entity update logic
-		entityManager.removeEatenFood(); // remove entity during run time
-
 		entityManager.movement(); // move movable entities (AI)
-
 		spawnManager.removeEatenFood();
 		
 		// spawn logic

@@ -47,7 +47,7 @@ public class EndLevelScreen extends Scene{
 	}
 	
 	@Override
-	public void render(float delta ) {
+	public void render(float delta) {
 		ScreenUtils.clear(0,0,0.2f,1);
 		batch.begin();
 		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
