@@ -35,7 +35,7 @@ public class GameScreen extends Scene {
         this.ioManager = im;
 		this.playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 100, 3, game));
 		this.spawnManager.loadEntity();
-		
+		this.spawnManager.spawnEntityList();
 
 
 

@@ -29,16 +29,16 @@ public class Food extends Entity{
 		
 	}
 	
-	public void checkCollision(iCollider other)
-	{
-		if (other instanceof Player) {
-            setEaten(); // Mark this food for removal upon collision with a player
-        }
-	}
+		public void checkCollision(iCollider other)
+		{
+			if (other instanceof Player) {
+				setEaten(); // Mark this food for removal upon collision with a player
+			}
+		}
 
-	public boolean isEaten() {
-		return eaten;
-	}
+		public boolean isEaten() {
+			return eaten;
+		}
 
 	public void setEaten() {
 		this.eaten = true;
