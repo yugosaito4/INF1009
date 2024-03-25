@@ -14,7 +14,6 @@ public abstract class Entity implements iCollider {
 	public Entity()
 	{
 		
-		
 	}
 	
 	public Entity(String texturepath, float x, float y, float speed)

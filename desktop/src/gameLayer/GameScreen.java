@@ -12,30 +12,31 @@ public class GameScreen extends Scene {
 
 	private BitmapFont font; // Add a BitmapFont member variable to hold the font
 	private String nextTargetScene;
+	private String loseScene;
 	private EntityManager entityManager;
 	private PlayerManager playerManager;
 	private CollisionManager collisionManager;
 	private IOManagement ioManager;
 	private SpawnManager spawnManager;
 	private float timer = 0;
-
-	private int maxScore = 3;
+ 
+	private int maxScore = 3; //can be adjusted
 
 	private static final float SPAWN_INTERVAL = 5f; // Interval in seconds
 
-	public GameScreen(SceneManager game, String nextTargetScene ,EntityManager em , PlayerManager pm , SpawnManager spawner , CollisionManager cm, IOManagement im) {
-		super(game, "bg2.jpg");
+	public GameScreen(SceneManager game, String nextTargetScene, String loseScene,EntityManager em , PlayerManager pm , SpawnManager spawner , CollisionManager cm, IOManagement im) {
+		super(game, "GameworldBG.jpg");
 		font = new BitmapFont();
+		this.loseScene = loseScene;
 		this.nextTargetScene = nextTargetScene;
-
         this.entityManager = em;
         this.playerManager = pm;
         this.spawnManager = spawner;
         this.collisionManager = cm;
         this.ioManager = im;
-		this.playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 100, 3, game));
+		this.playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 200, 3, 0, game));
 		this.spawnManager.loadEntity();
-		
+		this.spawnManager.spawnEntityList();
 
 
 
@@ -48,27 +49,33 @@ public class GameScreen extends Scene {
 		ScreenUtils.clear(0, 0, 0.2f, 1);
 		batch.begin();
 		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		font.draw(batch, "Health: " + playerManager.getHealth(0), 10, Gdx.graphics.getHeight() - 10); // getting health for first player
-		font.draw(batch, "Score: " + playerManager.getScore	(0) + "/" + maxScore, 10, Gdx.graphics.getHeight() - 40); // getting score for first player
+		playerOne player = (playerOne) playerManager.getPlayerList().get(0);
+		player.drawHearts(batch, 10, Gdx.graphics.getHeight() -  100); //draw player health
+		font.getData().setScale(2, 2);
+		font.draw(batch, "Score: " + playerManager.getScore(0) + "/" + maxScore, 350, Gdx.graphics.getHeight() - 40); // getting score for first player
 		playerManager.drawPlayers(batch); // draw player
+		
+	
+		
+		
+		
 		batch.end();
 
 		// player update logic
 		playerManager.update(delta);
 		if (playerManager.getHealth(0) <= 0) {
-			game.setScene(nextTargetScene); // change to gameover, with retry
+			playerManager.reset(0); //reset stats
+			game.setLastGameLevel(game.getCurrentSceneName()); //store level name before dispalying game over
+			game.setScene(loseScene); 
 		}
 
 		if (playerManager.getScore(0) >= 3) {
-			playerManager.setScore(0);
-			game.setScene(nextTargetScene); // change to gameover, with retry
+			playerManager.reset(0); //reset stats
+			game.setScene(nextTargetScene); 
 		}
 
 		// entity update logic
-		entityManager.removeEatenFood(); // remove entity during run time
-
 		entityManager.movement(); // move movable entities (AI)
-
 		spawnManager.removeEatenFood();
 		
 		// spawn logic

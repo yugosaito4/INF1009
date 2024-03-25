@@ -55,11 +55,14 @@ public class PlayerManager {
         }
 	}
 	
-	public void setScore(int index)
+
+	
+	public void reset(int index)
 	{
 		if (!playerList.isEmpty()) {
-            playerList.get(0).setScore(0);
-		}
+			playerList.get(index).setScore(0);
+            playerList.get(index).setHealth(3);
+		}	
 	}
 	
 

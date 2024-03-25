@@ -23,12 +23,13 @@ public abstract class Player implements iMovable , iCollider{
 		
 	}
 	
-	public Player(String texturepath, float x, float y, float speed , int health)
+	public Player(String texturepath, float x, float y, float speed , int health, int score)
 	{
 		this.x = x;
 		this.y = y;
 		this.speed = speed;
 		this.setHealth(health);
+		this.setScore(score);
 		tex = new Texture(texturepath);
 	}
 	

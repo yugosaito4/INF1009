@@ -15,8 +15,6 @@ public class EntityManager {
 		entityList = new ArrayList<Entity>();
 	}
 	
-	
-	
 	public void addEntity(Entity e)
 	{
 		entityList.add(e);

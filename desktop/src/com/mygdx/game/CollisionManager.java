@@ -47,7 +47,7 @@ public class CollisionManager {
             }
         }
         
-        // Now check collisions in the combined list
+        //check collisions in the combined list
         checkCollisions(collidables);
     }
 	

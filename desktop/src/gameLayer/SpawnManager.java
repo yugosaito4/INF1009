@@ -7,10 +7,8 @@ import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.AIMovable;
 import com.mygdx.game.Entity;
 import com.mygdx.game.EntityManager;
-import com.mygdx.game.Player;
 
 public class SpawnManager {
 	private int maxEntity = 6;
@@ -44,16 +42,23 @@ public class SpawnManager {
         maxY -= 50; // Leave some margin at the top
     
         // Add entities with random positions within the adjusted range
-        entityManager.addEntity(new UnhealthyFood("Unhealthy/hot_dog_01.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        entityManager.addEntity(new UnhealthyFood("Unhealthy/pizza_01.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        entityManager.addEntity(new UnhealthyFood("Unhealthy/doughnut.png",  rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        entityManager.addEntity(new UnhealthyFood("Unhealthy/french_fries.png",  rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        entityManager.addEntity(new UnhealthyFood("Unhealthy/cupcake.png",  rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        entityManager.addEntity(new Fruits("Fruits/apple.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        entityManager.addEntity(new Fruits("Fruits/banana.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        entityManager.addEntity(new Fruits("Fruits/grapes.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        entityManager.addEntity(new Fruits("Fruits/kiwi.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        entityManager.addEntity(new Fruits("Fruits/lemon.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new UnhealthyFood("Unhealthy/Burger.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new UnhealthyFood("Unhealthy/Cookie.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new UnhealthyFood("Unhealthy/Cupcake.png",  rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new UnhealthyFood("Unhealthy/Fries.png",  rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new UnhealthyFood("Unhealthy/Hotdog.png",  rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new UnhealthyFood("Unhealthy/IceCream.png",  rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new UnhealthyFood("Unhealthy/Pizza.png",  rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new UnhealthyFood("Unhealthy/Popsicle.png",  rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new UnhealthyFood("Unhealthy/Sundae.png",  rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new Fruits("Fruits/Apple.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new Fruits("Fruits/Banana.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new Fruits("Fruits/Grapes.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new Fruits("Fruits/Kiwi.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new Fruits("Fruits/Lemon.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new Fruits("Fruits/Orange.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new Fruits("Fruits/Watermelon.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new Fruits("Fruits/Strawberry.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
         entityManager.addEntity(new Vegetable("Vegetables/bok_choy.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
         entityManager.addEntity(new Vegetable("Vegetables/broccoli.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
         entityManager.addEntity(new Vegetable("Vegetables/cabbage.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
@@ -64,7 +69,10 @@ public class SpawnManager {
         entityManager.addEntity(new Protein("Proteins/Fish.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
         entityManager.addEntity(new Protein("Proteins/Steak.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
         entityManager.addEntity(new Protein("Proteins/FishSteak.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        //entityManager.addEntity(new AIEnemy("Unhealthy/popsicle.png", 200, 300, 5));
+        entityManager.addEntity(new Protein("Proteins/Ribs.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new Protein("Proteins/Steak.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        entityManager.addEntity(new Protein("Proteins/Shrimp.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
+        
     }
 
 	

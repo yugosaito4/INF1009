@@ -1,7 +1,6 @@
 package gameLayer;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -13,13 +12,24 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.*;
 
 public class ToolTipScreen extends Scene{
-	private BitmapFont font; // Add a BitmapFont member variable to hold the font
+	
+    private float screenWidth = Gdx.graphics.getWidth();
+    private float screenHeight = Gdx.graphics.getHeight();
+    
+    private static final int buttonWidth = 300;
+    private static final int buttonHeight = 50;
+    
+
+    private float start_button_x = (screenWidth - buttonWidth)/2;
+    private float start_button_y = ((screenHeight - buttonHeight)/2) - 300;
+    
 	private Stage stage;
 	private Button startGameButton;
+	
+
 
 	public ToolTipScreen(SceneManager game,String bgImage, String targetNextScene) {
 		super(game, bgImage);
-		font = new BitmapFont();
 		
 		stage = new Stage(new ScreenViewport()); // Use the current screen size
         Gdx.input.setInputProcessor(stage); // Set input processor
@@ -28,9 +38,9 @@ public class ToolTipScreen extends Scene{
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
         // Create and set up the start game button
-        startGameButton = new TextButton("Start Game", skin);
-        startGameButton.setPosition(270, 100); 
-        startGameButton.setSize(200, 50); 
+        startGameButton = new TextButton("Lets Go!", skin);
+        startGameButton.setPosition(start_button_x, start_button_y); 
+        startGameButton.setSize(buttonWidth, buttonHeight); 
 
         // Add the button to the stage
         stage.addActor(startGameButton);
@@ -90,7 +100,6 @@ public class ToolTipScreen extends Scene{
 	}
 	
 	public void dispose() {
-		font.dispose();
 		stage.dispose();
 		super.dispose();
 	}

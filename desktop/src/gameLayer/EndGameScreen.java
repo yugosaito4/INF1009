@@ -1,8 +1,6 @@
 package gameLayer;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -14,24 +12,32 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.*;
 
 public class EndGameScreen extends Scene{
-	private BitmapFont font; // Add a BitmapFont member variable to hold the font
+
+	
+	
+	//set up button sizes
+    private float screenWidth = Gdx.graphics.getWidth();
+    private float screenHeight = Gdx.graphics.getHeight();
+    private static final int buttonWidth = 300;
+    private static final int buttonHeight = 50;
+    private float return_button_x = (screenWidth - buttonWidth)/2;
+    private float return_button_y = ((screenHeight - buttonHeight)/2) - 300;
+    
 	private Stage stage;
 	private Button returnButton;
 
 	public EndGameScreen(SceneManager game) {
-		super(game, "bg1.jpg");
-		font = new BitmapFont();
+		super(game, "End.png");
 		stage = new Stage(new ScreenViewport()); // Use the current screen size
-        Gdx.input.setInputProcessor(stage); // Set input processor
+        Gdx.input.setInputProcessor(stage); 
         
-        // Initialize the skin (You need to have a skin, uiskin.json file in your assets)
+
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
-        // Create and set up the start game button
+        // Create and set up the return to menu button
         returnButton = new TextButton("Next", skin);
-        returnButton.setPosition(270, 100); // Adjust position to match your needs
-        returnButton.setSize(200, 50); // Adjust size to match your needs
-
+        returnButton.setPosition(return_button_x, return_button_y); 
+        returnButton.setSize(buttonWidth, buttonHeight); 
         // Add the button to the stage
         stage.addActor(returnButton);
 
@@ -51,9 +57,6 @@ public class EndGameScreen extends Scene{
 		ScreenUtils.clear(0,0,0.2f,1);
 		batch.begin();
 		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		font.draw(batch, "This is the End Game scene", 250, 450);
-		font.draw(batch, "Thank you for playing our game!", 250, 300);
-		font.draw(batch, "Hopefully you have learned about healthy eating habits through our game!", 100, 280);
 		batch.end();
 		
 		stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
@@ -92,7 +95,6 @@ public class EndGameScreen extends Scene{
 	}
 	
 	public void dispose() {
-		font.dispose();
 		super.dispose();
 	}
 }
