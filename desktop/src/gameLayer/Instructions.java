@@ -19,12 +19,15 @@ public class Instructions extends Scene{
 	private BitmapFont font; // Add a BitmapFont member variable to hold the font
 	private Stage stage;
 	private Button startButton;
+	private Sound soundManager;
 
 	public Instructions(SceneManager game) {
 		super(game, "bg1.jpg");
 		font = new BitmapFont();
 		stage = new Stage(new ScreenViewport()); // Use the current screen size
         Gdx.input.setInputProcessor(stage); // Set input processor
+        
+        soundManager = new Sound();
         
         // Initialize the skin (You need to have a skin, uiskin.json file in your assets)
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
@@ -67,6 +70,8 @@ public class Instructions extends Scene{
 	public void show() {
 		// Set the stage as the input processor
         Gdx.input.setInputProcessor(stage);
+        soundManager.setFile(6); 
+        soundManager.play();
 		
 	}
 
@@ -90,12 +95,13 @@ public class Instructions extends Scene{
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
+		soundManager.stop();
 		
 	}
 	
 	public void dispose() {
 		font.dispose();
+		soundManager.clip.close(); // Ensure the clip is closed to release resources
 		super.dispose();
 	}
 }

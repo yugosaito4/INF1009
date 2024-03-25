@@ -18,6 +18,7 @@ public class GameScreen extends Scene {
 	private IOManagement ioManager;
 	private SpawnManager spawnManager;
 	private float timer = 0;
+	private Sound soundManager;
 
 	private int maxScore = 3;
 
@@ -36,7 +37,7 @@ public class GameScreen extends Scene {
 		this.playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 100, 3, game));
 		this.spawnManager.loadEntity();
 		
-
+		soundManager = new Sound();
 
 
 	}
@@ -95,7 +96,8 @@ public class GameScreen extends Scene {
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
+		soundManager.setFile(0); 
+        soundManager.loop();
 
 	}
 
@@ -119,12 +121,13 @@ public class GameScreen extends Scene {
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
+		soundManager.stop();
 
 	}
 
 	public void dispose() {
 		font.dispose();
+		soundManager.clip.close(); // Ensure the clip is closed to release resources
 		super.dispose();
 	}
 }

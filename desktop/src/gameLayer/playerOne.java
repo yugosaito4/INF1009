@@ -14,6 +14,7 @@ private float animationInterval = 0.25f; // Interval in seconds to change mouth 
 private Texture upOpen, downOpen, leftOpen, rightOpen; // Open mouth Textures for the player
 private Texture closedMouthTexture;
 private SceneManager sceneManager;
+private Sound soundManager;
 	
 	public playerOne(String baseTexturePath, String closedMouthPath, float x, float y, float s , int hp, SceneManager sceneManager)
 	{
@@ -25,7 +26,8 @@ private SceneManager sceneManager;
 	    this.downOpen = new Texture(baseTexturePath + "Down.png");
         this.leftOpen = new Texture(baseTexturePath + "Left.png");
         this.rightOpen = new Texture(baseTexturePath + "Open.png");
-        this.sceneManager = sceneManager;        
+        this.sceneManager = sceneManager;
+        soundManager = new Sound();
 	}
 	
 
@@ -81,21 +83,33 @@ private SceneManager sceneManager;
 
         if (other instanceof UnhealthyFood) {
             this.setHealth(this.getHealth() - 1);
+            soundManager.setFile(2); 
+            soundManager.play();
         } 
         else if (other instanceof AIEnemy) {
             this.setHealth(this.getHealth() - 3);
+            soundManager.setFile(2); 
+            soundManager.play();
         } 
         else if ("gameScene1".equals(currentScene) && other instanceof Protein){        	
             this.setScore(this.getScore() + 1);
+            soundManager.setFile(1); 
+            soundManager.play();
         }
         else if ("gameScene2".equals(currentScene) && other instanceof Vegetable){
             this.setScore(this.getScore() + 1);
+            soundManager.setFile(1); 
+            soundManager.play();
         }
         else if ("gameScene3".equals(currentScene) && other instanceof Fruits){
             this.setScore(this.getScore() + 1);
+            soundManager.setFile(1); 
+            soundManager.play();
         }
         else if ("gameScene4".equals(currentScene) && other instanceof Fruits || other instanceof Vegetable || other instanceof Protein){
             this.setScore(this.getScore() + 1);
+            soundManager.setFile(1); 
+            soundManager.play();
         }
     }
 }

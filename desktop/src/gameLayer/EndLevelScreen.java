@@ -17,6 +17,8 @@ public class EndLevelScreen extends Scene{
 	private String endLevelText;
 	private Stage stage;
 	private Button nextButton;
+	private Sound soundManager;
+	
 
 	public EndLevelScreen(SceneManager game, String endLevelText, String nextTargetScene) {
 		super(game, "bg1.jpg");
@@ -24,6 +26,8 @@ public class EndLevelScreen extends Scene{
 		this.endLevelText = endLevelText;
 		stage = new Stage(new ScreenViewport()); // Use the current screen size
         Gdx.input.setInputProcessor(stage); // Set input processor
+        
+        soundManager = new Sound();
         
         // Initialize the skin (You need to have a skin, uiskin.json file in your assets)
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
@@ -63,6 +67,8 @@ public class EndLevelScreen extends Scene{
 	public void show() {
 		// Set the stage as the input processor
         Gdx.input.setInputProcessor(stage);
+        soundManager.setFile(3); 
+        soundManager.play();
 		
 	}
 
@@ -86,13 +92,14 @@ public class EndLevelScreen extends Scene{
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
+		soundManager.stop();
 		
 	}
 	
 	public void dispose() {
 		font.dispose();
 		stage.dispose();
+		soundManager.clip.close(); // Ensure the clip is closed to release resources
 		super.dispose();
 	}
 }
