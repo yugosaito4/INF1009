@@ -20,12 +20,15 @@ public class Instructions extends Scene{
     private float screenHeight = Gdx.graphics.getHeight();
     private static final int buttonWidth = 300;
     private static final int buttonHeight = 50;
+    private Sound sound;
 
 	public Instructions(SceneManager game) {
 		super(game, "instruction.jpg");
 
 		stage = new Stage(new ScreenViewport()); // Use the current screen size
         Gdx.input.setInputProcessor(stage); // Set input processor
+        
+        sound = new Sound();
         
 
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
@@ -65,6 +68,8 @@ public class Instructions extends Scene{
 	public void show() {
 		// Set the stage as the input processor
         Gdx.input.setInputProcessor(stage);
+        sound.setFile(1);
+        sound.play();
 		
 	}
 
@@ -88,12 +93,13 @@ public class Instructions extends Scene{
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
+		sound.stop();
 		
 	}
 	
 	public void dispose() {
-		super.dispose();
+		sound.clip.stop();
+		super.dispose();		
 	}
 }
 

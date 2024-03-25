@@ -23,12 +23,15 @@ public class EndLevelScreen extends Scene{
 
 	private Stage stage;
 	private Button nextButton;
+	
+	private Sound sound;
 
 	public EndLevelScreen(SceneManager game,String nextTargetScene) {
 		super(game, "Win.png");
 		stage = new Stage(new ScreenViewport()); // Use the current screen size
         Gdx.input.setInputProcessor(stage); // Set input processor
         
+        sound = new Sound();
         
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
@@ -64,7 +67,9 @@ public class EndLevelScreen extends Scene{
 	public void show() {
 		// Set the stage as the input processor
         Gdx.input.setInputProcessor(stage);
-		
+		sound.setFile(6);
+		sound.play();
+        
 	}
 
 	@Override
@@ -87,12 +92,13 @@ public class EndLevelScreen extends Scene{
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
+		sound.stop();
 		
 	}
 	
 	public void dispose() {;
 		stage.dispose();
+		sound.clip.close();
 		super.dispose();
 	}
 }

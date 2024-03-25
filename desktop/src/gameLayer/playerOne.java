@@ -19,6 +19,7 @@ public class playerOne extends Player {
     private Texture fullHeart;
     private Texture emptyHeart;
     
+    private Sound sound;
     
     private Texture closedMouthTexture;
     private SceneManager sceneManager;
@@ -37,6 +38,8 @@ public class playerOne extends Player {
         this.fullHeart = new Texture(baseTexturePath + "HPfull.png");
         this.emptyHeart = new Texture(baseTexturePath + "HPempty.png");
         this.sceneManager = sceneManager;
+        
+        sound = new Sound();
         
     }
 
@@ -100,20 +103,30 @@ public class playerOne extends Player {
 
         if (other instanceof UnhealthyFood) {
             this.setHealth(this.getHealth() - 1);
+            sound.setFile(5);
+            sound.play();
         } else if (other instanceof AIEnemy) {
             this.setHealth(this.getHealth() - 3);
         } else if ("gameScene1".equals(currentScene) && other instanceof Protein) {
             this.setScore(this.getScore() + 1);
+            sound.setFile(4);
+            sound.play();
         } else if ("gameScene2".equals(currentScene) && other instanceof Vegetable) {
             this.setScore(this.getScore() + 1);
+            sound.setFile(4);
+            sound.play();
         } else if ("gameScene3".equals(currentScene) && other instanceof Fruits) {
             this.setScore(this.getScore() + 1);
+            sound.setFile(4);
+            sound.play();
         } else if ("gameScene4".equals(currentScene)) {
             if ((other instanceof Protein && !eatenFoodType.contains(Protein.class)) ||
                 (other instanceof Vegetable && !eatenFoodType.contains(Vegetable.class)) ||
                 (other instanceof Fruits && !eatenFoodType.contains(Fruits.class))) {
                 this.setScore(this.getScore() + 1);
                 eatenFoodType.add(other.getClass());
+                sound.setFile(4);
+                sound.play();
             }
         }
     }

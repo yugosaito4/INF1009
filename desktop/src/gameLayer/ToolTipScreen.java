@@ -26,13 +26,15 @@ public class ToolTipScreen extends Scene{
 	private Stage stage;
 	private Button startGameButton;
 	
-
+	private Sound sound;
 
 	public ToolTipScreen(SceneManager game,String bgImage, String targetNextScene) {
 		super(game, bgImage);
 		
 		stage = new Stage(new ScreenViewport()); // Use the current screen size
         Gdx.input.setInputProcessor(stage); // Set input processor
+        
+        sound = new Sound();
         
         // Initialize the skin (You need to have a skin, uiskin.json file in your assets)
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
@@ -72,6 +74,8 @@ public class ToolTipScreen extends Scene{
 	public void show() {
 		// Set the stage as the input processor
         Gdx.input.setInputProcessor(stage);
+        sound.setFile(2);
+        sound.play();
 		
 	}
 
@@ -95,12 +99,13 @@ public class ToolTipScreen extends Scene{
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
+		sound.stop();
 		
 	}
 	
 	public void dispose() {
 		stage.dispose();
+		sound.clip.close();
 		super.dispose();
 	}
 }
