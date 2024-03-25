@@ -1,80 +1,64 @@
 package gameLayer;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.mygdx.game.*;
-
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.*;
 
-
-
-public class StartScreen extends Scene{
-	
+public class LoseLevelScreen extends Scene{
 	
     private float screenWidth = Gdx.graphics.getWidth();
     private float screenHeight = Gdx.graphics.getHeight();
+	
     private static final int buttonWidth = 300;
     private static final int buttonHeight = 50;
     
-    private float start_button_x = (screenWidth - buttonWidth)/2;
-    private float start_button_y = ((screenHeight - buttonHeight)/2) - 300;
-    
-    private float instruction_button_x = (screenWidth - buttonWidth)/2;
-    private float instruction_button_y = ((screenHeight - buttonHeight)/2) - 380;
-	
-    private Stage stage;
-    private Button startButton;
-    private Button instructionsButton;
 
-	public StartScreen(SceneManager game) {
-		super(game, "MainMenu.jpg");
+    private float playAgain_button_x = (screenWidth - buttonWidth)/2;
+    private float playAgain_button_y = ((screenHeight - buttonHeight)/2) - 300;
+
+	private Stage stage;
+	private Button nextButton;
+
+	public LoseLevelScreen(SceneManager game) {
+		super(game, "Lose.png");
 		stage = new Stage(new ScreenViewport()); // Use the current screen size
         Gdx.input.setInputProcessor(stage); // Set input processor
+        
+        
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
         // Create and set up the start game button
-        startButton = new TextButton("Start Game", skin);
-        startButton.setPosition(start_button_x, start_button_y); 
-        startButton.setSize(buttonWidth, buttonHeight); 
+        nextButton = new TextButton("Try Again", skin);
+        nextButton.setPosition(playAgain_button_x, playAgain_button_y); 
+        nextButton.setSize(buttonWidth, buttonHeight); 
 
         // Add the button to the stage
-        stage.addActor(startButton);
+        stage.addActor(nextButton);
 
         // Button click listener
-        startButton.addListener(new ClickListener() {
+        nextButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScene("toolTip1");
-            }
-        });
-        
-        // Instructions button
-        instructionsButton = new TextButton("Instructions", skin);
-        instructionsButton.setPosition(instruction_button_x, instruction_button_y); 
-        instructionsButton.setSize(buttonWidth, buttonHeight);
-        stage.addActor(instructionsButton);
-        instructionsButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScene("instructions");
+                // Handle button click
+            	String lastGameLevel = game.getLastGameLevel();
+                game.setScene(lastGameLevel);
             }
         });
 	}
 	
 	@Override
-	public void render(float delta ) {
+	public void render(float delta) {
 		ScreenUtils.clear(0,0,0.2f,1);
 		batch.begin();
-		batch.draw(tex, 0, 0, screenWidth, screenHeight);
+		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		batch.end();
-		
-
 		
 		stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
@@ -111,7 +95,7 @@ public class StartScreen extends Scene{
 		
 	}
 	
-	public void dispose() {
+	public void dispose() {;
 		stage.dispose();
 		super.dispose();
 	}
