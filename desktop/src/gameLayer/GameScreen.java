@@ -50,16 +50,13 @@ public class GameScreen extends Scene {
 		// drawing logic
 		ScreenUtils.clear(0, 0, 0.2f, 1);
 		batch.begin();
-		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); //draw bg
 		playerOne player = (playerOne) playerManager.getPlayerList().get(0);
 		player.drawHearts(batch, 10, Gdx.graphics.getHeight() -  100); //draw player health
 		font.getData().setScale(2, 2);
 		font.draw(batch, "Score: " + playerManager.getScore(0) + "/" + maxScore, 350, Gdx.graphics.getHeight() - 40); // getting score for first player
 		playerManager.drawPlayers(batch); // draw player
-		
-	
-		
-		
+
 		
 		batch.end();
 
@@ -67,6 +64,7 @@ public class GameScreen extends Scene {
 		playerManager.update(delta);
 		if (playerManager.getHealth(0) <= 0) {
 			playerManager.reset(0); //reset stats
+			spawnManager.despawn(); //clear the spawn list
 			game.setLastGameLevel(game.getCurrentSceneName()); //store level name before dispalying game over
 			game.setScene(loseScene); 
 		}
@@ -77,7 +75,7 @@ public class GameScreen extends Scene {
 		}
 
 		// entity update logic
-		entityManager.movement(); // move movable entities (AI)
+		entityManager.movement(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()); // move movable entities (AI)
 		spawnManager.removeEatenFood();
 		
 		// spawn logic
@@ -96,9 +94,6 @@ public class GameScreen extends Scene {
 		}
 		
 
-		if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-			game.setScene(nextTargetScene);
-		}
 
 	}
 

@@ -72,7 +72,7 @@ public class SpawnManager {
         entityManager.addEntity(new Protein("Proteins/Ribs.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
         entityManager.addEntity(new Protein("Proteins/Steak.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
         entityManager.addEntity(new Protein("Proteins/Shrimp.png", rand.nextFloat() * (maxX - minX) + minX, rand.nextFloat() * (maxY - minY) + minY, 50));
-        
+        entityManager.addEntity(new AIEnemy("AI.png", 100, 100, 2));
     }
 
 	
@@ -129,12 +129,13 @@ public class SpawnManager {
 
 
 	public void spawn(SpriteBatch batch, List<Entity> spawnList) {
-		System.out.println(spawnList.size());
+		//System.out.println(spawnList.size());
 		batch.begin();
-		for (Entity entity : spawnList) {
+		for (Entity entity : spawnList ) {
 			entity.draw(batch); // Draw each spawned entity
 		}
 		
+
 		batch.end();
 	}
 
@@ -143,7 +144,7 @@ public class SpawnManager {
 	}
 	
 
-	private void despawn() {
+	public void despawn() {
 		// Remove all entities from the list
 		spawnList.removeAll(spawnList);
 	}

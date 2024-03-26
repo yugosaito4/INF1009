@@ -41,13 +41,13 @@ public class EntityManager {
 		}
 	}
 	
-	public void movement()
+	public void movement(float width, float height)
 	{
 		for (Entity entity : entityList)
 		{
 			if(entity instanceof AIMovable)
 			{
-				((AIMovable) entity).AIEntityMovement();
+				((AIMovable) entity).AIEntityMovement(width, height);
 			}		
 		}
 	}
