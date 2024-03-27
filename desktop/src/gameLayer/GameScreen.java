@@ -19,7 +19,8 @@ public class GameScreen extends Scene {
 	private IOManagement ioManager;
 	private SpawnManager spawnManager;
 	private float timer = 0;
- 
+    private float screenWidth = Gdx.graphics.getWidth();
+    private float screenHeight = Gdx.graphics.getHeight();
 	private int maxScore = 3; //can be adjusted
 
 	private static final float SPAWN_INTERVAL = 5f; // Interval in seconds
@@ -75,7 +76,7 @@ public class GameScreen extends Scene {
 		}
 
 		// entity update logic
-		entityManager.movement(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()); // move movable entities (AI)
+		entityManager.movement(screenWidth, screenHeight); // move movable entities (AI)
 		spawnManager.removeEatenFood();
 		
 		// spawn logic

@@ -68,14 +68,14 @@ public abstract class Player implements iMovable , iCollider{
         float objectWidth = tex.getWidth();
         float objectHeight = tex.getHeight();
 
-	    float maxX = Gdx.graphics.getWidth() - objectWidth;
+	    float maxX = Gdx.graphics.getWidth() - objectWidth - 150;
 	    if (getX() < 0) {
 	    	setX(0);
 	    } else if (getX() > maxX) {
 	    	setX(maxX);
 	    }
 	    
-	    float maxY = Gdx.graphics.getHeight() - objectHeight;
+	    float maxY = Gdx.graphics.getHeight() - objectHeight - 150;
 		if (getY() < 0) {
 			setY(0);
 		} else if (getY() > maxY) {
