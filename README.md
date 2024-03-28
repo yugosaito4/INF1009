@@ -29,3 +29,5 @@ INF1009 Object Oriented Programming Project Part 2 (Game)
 * Follow instructions gievn prior to the stage
 * Collect the required objects to finish the level
 * Total of 4 stages
+
+![MainMenu](https://github.com/yugosaito4/INF1009/assets/71302213/6bf39256-e4ed-46c3-8fbe-71d6763a08ab)
