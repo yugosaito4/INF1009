@@ -7,6 +7,9 @@ import com.badlogic.gdx.math.Rectangle;
 
 
 public class CollisionManager {
+	
+
+	//check collisions in the list
     public void checkCollisions(List<?> objects) {
         for (int i = 0; i < objects.size(); i++) {
             Object objA = objects.get(i);
@@ -26,7 +29,8 @@ public class CollisionManager {
             }
         }
     }
-
+    
+    //takes in 2 list to combine into 1 collidable list
     public void checkCollisionList(List<?> players, List<?> entities) {
         List<iCollider> collidables = new ArrayList<>();
         // Combine players and entities into one list of iCollider objects

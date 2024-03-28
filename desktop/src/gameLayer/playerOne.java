@@ -2,13 +2,11 @@ package gameLayer;
 
 import java.util.ArrayList;
 
+
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.IOManagement;
-import com.mygdx.game.Player;
-import com.mygdx.game.SceneManager;
-import com.mygdx.game.iCollider;
+import com.mygdx.game.*;
 
 public class playerOne extends Player {
 
@@ -130,4 +128,13 @@ public class playerOne extends Player {
             }
         }
     }
+    
+    public void resetEatenList() {
+    	eatenFoodType.removeAll(eatenFoodType);
+    }
+    
+	public ArrayList<Object> getEatenList() {
+        return eatenFoodType;
+    }
+    
 }

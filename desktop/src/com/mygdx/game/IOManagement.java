@@ -8,10 +8,12 @@ import javax.sound.sampled.Clip;
 
 public class IOManagement 
 {
-    Clip clip;
-	URL soundURL[] = new URL[30];
+    protected Clip clip;
+	protected URL soundURL[] = new URL[30];
 
+	
     public IOManagement(){
+    	//adding sounds to an array
         soundURL[0] = getClass().getResource("/Sounds/StartMenuBG.wav");
 		soundURL[1] = getClass().getResource("/Sounds/InstructionsSound.wav");
 		soundURL[2] = getClass().getResource("/Sounds/Tips.wav");
@@ -22,11 +24,15 @@ public class IOManagement
 		soundURL[7] = getClass().getResource("/Sounds/FinalGameWin.wav");
 		soundURL[8] = getClass().getResource("/Sounds/LoseLevel.wav");
     }
+    
+    //handling input
 	public void handleInput(List<Player> playerList) {
         for (Player p : playerList) {
 			((iMovable) p).UserEntityMovement();	
         }
     }
+	
+	
 	
 	public void setFile(int i) {
             
@@ -40,6 +46,7 @@ public class IOManagement
         }
     }
     
+	//handling output
     public void play() {
         if (clip != null){
             clip.start();

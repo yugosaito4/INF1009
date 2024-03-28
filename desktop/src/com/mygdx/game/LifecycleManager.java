@@ -20,8 +20,9 @@ public class LifecycleManager extends ApplicationAdapter {
 	
 	public void create()
 	{	
+		//creation of ONE spritebatch 
 		batch = new SpriteBatch(); 
-		
+		//creation of manager classes
 		sceneManager = new SceneManager();
 	    entityManager = new EntityManager();
 	    playerManager = new PlayerManager();

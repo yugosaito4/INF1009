@@ -1,12 +1,10 @@
 package gameLayer;
 
 import java.util.Random;
-
-import com.badlogic.gdx.Gdx;
 import com.mygdx.game.*;
 
 public class AIEnemy extends Entity implements AIMovable, iCollider {
-	private enum Direction {
+	private enum Direction { //2 different directions for AI to move
 		HORIZONTAL, VERTICAL
 	}
 

@@ -13,12 +13,13 @@ import com.mygdx.game.*;
 
 public class ToolTipScreen extends Scene{
 	
+	
+	//set up button parameters
     private float screenWidth = Gdx.graphics.getWidth();
     private float screenHeight = Gdx.graphics.getHeight();
     
     private static final int buttonWidth = 300;
     private static final int buttonHeight = 50;
-    
 
     private float start_button_x = (screenWidth - buttonWidth)/2;
     private float start_button_y = ((screenHeight - buttonHeight)/2) - 300;
@@ -36,7 +37,6 @@ public class ToolTipScreen extends Scene{
         Gdx.input.setInputProcessor(stage); // Set input processor
     
         
-        // Initialize the skin (You need to have a skin, uiskin.json file in your assets)
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
         // Create and set up the start game button

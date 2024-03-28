@@ -1,7 +1,6 @@
 package gameLayer;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.*;
@@ -57,18 +56,24 @@ public class GameScreen extends Scene {
 		
 		batch.end();
 
+
 		// player update logic
 		playerManager.update(delta);
-		if (playerManager.getHealth(0) <= 0) {
+		if (playerManager.getHealth(0) <= 0) { //lost level
 			playerManager.reset(0); //reset stats
 			spawnManager.despawn(); //clear the spawn list
+			if(player.getEatenList()!= null) //only level 4 will return NOT null
+			{
+				player.resetEatenList(); //resets level 4 list
+			}
+			ioManager.stop();
 			game.setLastGameLevel(game.getCurrentSceneName()); //store level name before dispalying game over
-			game.setScene(loseScene); 
+			game.setScene(loseScene); //display game over scene
 		}
 
-		if (playerManager.getScore(0) >= 3) {
+		if (playerManager.getScore(0) >= 3) { //won level
 			playerManager.reset(0); //reset stats
-			game.setScene(nextTargetScene); 
+			game.setScene(nextTargetScene); //set the next scene
 		}
 
 		// entity update logic
@@ -98,7 +103,6 @@ public class GameScreen extends Scene {
 	public void show() {
 		ioManager.setFile(3);
 		ioManager.loop();
-
 	}
 
 	@Override
