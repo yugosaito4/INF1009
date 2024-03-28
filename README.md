@@ -10,7 +10,7 @@ INF1009 Object Oriented Programming Project
 
 * https://youtu.be/Aic1wsClM9U
 
-# UML Link for UML (Game engine + game layer combined) \
+# UML Link for UML (Game engine + game layer combined) 
 
 * https://drive.google.com/file/d/1Orx5Mei1wjccs2IxHfbPPhykTfZjQQVr/view
 
