@@ -31,14 +31,16 @@ public class StartScreen extends Scene{
     private Stage stage;
     private Button startButton;
     private Button instructionsButton;
-    private Sound sound;
+    private IOManagement ioManager;
 
-	public StartScreen(SceneManager game) {
+	public StartScreen(SceneManager game, IOManagement im) {
 		super(game, "MainMenu.jpg");
+        this.ioManager = im;
+
 		stage = new Stage(new ScreenViewport()); // Use the current screen size
         Gdx.input.setInputProcessor(stage); // Set input processor
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
-        sound = new Sound();
+
 
         // Create and set up the start game button
         startButton = new TextButton("Start Game", skin);
@@ -86,8 +88,8 @@ public class StartScreen extends Scene{
 	public void show() {
 		// Set the stage as the input processor
         Gdx.input.setInputProcessor(stage);
-        sound.setFile(0);
-        sound.loop();
+        ioManager.setFile(0);
+        ioManager.loop();
 		
 	}
 
@@ -111,13 +113,13 @@ public class StartScreen extends Scene{
 
 	@Override
 	public void hide() {
-		sound.stop();
+		ioManager.stop();
 		
 	}
 	
 	public void dispose() {
 		stage.dispose();
-		sound.clip.close();
+		ioManager.getClip().close();
 		super.dispose();
 	}
 }

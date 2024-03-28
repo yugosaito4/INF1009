@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.IOManagement;
 import com.mygdx.game.Player;
 import com.mygdx.game.SceneManager;
 import com.mygdx.game.iCollider;
@@ -19,13 +20,13 @@ public class playerOne extends Player {
     private Texture fullHeart;
     private Texture emptyHeart;
     
-    private Sound sound;
+    private IOManagement ioManager;
     
     private Texture closedMouthTexture;
     private SceneManager sceneManager;
     ArrayList<Object> eatenFoodType = new ArrayList<Object>();
 
-    public playerOne(String baseTexturePath, String closedMouthPath, float x, float y, float s, int hp, int score, SceneManager sceneManager) {
+    public playerOne(String baseTexturePath, String closedMouthPath, float x, float y, float s, int hp, int score, SceneManager sceneManager, IOManagement im) {
         super(closedMouthPath, x, y, s, hp, score);
         this.closedMouthTexture = this.getTex(); // initial texture is closed mouth
 
@@ -38,8 +39,7 @@ public class playerOne extends Player {
         this.fullHeart = new Texture(baseTexturePath + "HPfull.png");
         this.emptyHeart = new Texture(baseTexturePath + "HPempty.png");
         this.sceneManager = sceneManager;
-        
-        sound = new Sound();
+        this.ioManager = im;
         
     }
 
@@ -103,30 +103,30 @@ public class playerOne extends Player {
 
         if (other instanceof UnhealthyFood) {
             this.setHealth(this.getHealth() - 1);
-            sound.setFile(5);
-            sound.play();
+            ioManager.setFile(5);
+            ioManager.play();
         } else if (other instanceof AIEnemy) {
             this.setHealth(this.getHealth() - 3);
         } else if ("gameScene1".equals(currentScene) && other instanceof Protein) {
             this.setScore(this.getScore() + 1);
-            sound.setFile(4);
-            sound.play();
+            ioManager.setFile(4);
+            ioManager.play();
         } else if ("gameScene2".equals(currentScene) && other instanceof Vegetable) {
             this.setScore(this.getScore() + 1);
-            sound.setFile(4);
-            sound.play();
+            ioManager.setFile(4);
+            ioManager.play();
         } else if ("gameScene3".equals(currentScene) && other instanceof Fruits) {
             this.setScore(this.getScore() + 1);
-            sound.setFile(4);
-            sound.play();
+            ioManager.setFile(4);
+            ioManager.play();
         } else if ("gameScene4".equals(currentScene)) {
             if ((other instanceof Protein && !eatenFoodType.contains(Protein.class)) ||
                 (other instanceof Vegetable && !eatenFoodType.contains(Vegetable.class)) ||
                 (other instanceof Fruits && !eatenFoodType.contains(Fruits.class))) {
                 this.setScore(this.getScore() + 1);
                 eatenFoodType.add(other.getClass());
-                sound.setFile(4);
-                sound.play();
+                ioManager.setFile(4);
+                ioManager.play();
             }
         }
     }

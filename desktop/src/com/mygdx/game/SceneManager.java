@@ -26,27 +26,27 @@ public class SceneManager extends Game {
     }
 
     public void createScene(EntityManager em , PlayerManager pm , SceneManager sm, SpawnManager spawner , CollisionManager cm, IOManagement im) {
-    	addScene("startScene", new StartScreen(this));
+    	addScene("startScene", new StartScreen(this, im));
     	
-    	addScene("instructions", new Instructions(this));
-    	addScene("Lose", new LoseLevelScreen(this));
+    	addScene("instructions", new Instructions(this, im));
+    	addScene("Lose", new LoseLevelScreen(this, im));
     	
-    	addScene("toolTip1", new ToolTipScreen(this,"ToolTips/ToolTip1.png", "gameScene1"));
-    	addScene("toolTip2", new ToolTipScreen(this,"ToolTips/ToolTip2.png", "gameScene2"));
-    	addScene("toolTip3", new ToolTipScreen(this,"ToolTips/ToolTip3.png", "gameScene3"));
-    	addScene("toolTip4", new ToolTipScreen(this,"ToolTips/ToolTip4.png", "gameScene4"));
+    	addScene("toolTip1", new ToolTipScreen(this,"ToolTips/ToolTip1.png", "gameScene1", im));
+    	addScene("toolTip2", new ToolTipScreen(this,"ToolTips/ToolTip2.png", "gameScene2", im));
+    	addScene("toolTip3", new ToolTipScreen(this,"ToolTips/ToolTip3.png", "gameScene3", im));
+    	addScene("toolTip4", new ToolTipScreen(this,"ToolTips/ToolTip4.png", "gameScene4", im));
     	
     	addScene("gameScene1", new GameScreen(this, "endLevel1","Lose" , em,pm,spawner,cm,im));
     	addScene("gameScene2", new GameScreen(this, "endLevel2" , "Lose" ,em,pm,spawner,cm,im));
     	addScene("gameScene3", new GameScreen(this, "endLevel3" ,"Lose" ,em,pm,spawner,cm,im));
     	addScene("gameScene4", new GameScreen(this, "endLevel4",  "Lose" ,em,pm,spawner,cm,im));
     	
-    	addScene("endLevel1", new EndLevelScreen(this, "toolTip2"));
-    	addScene("endLevel2", new EndLevelScreen(this, "toolTip3"));
-    	addScene("endLevel3", new EndLevelScreen(this, "toolTip4"));
-    	addScene("endLevel4", new EndLevelScreen(this, "endGameScene"));
+    	addScene("endLevel1", new EndLevelScreen(this, "toolTip2", im));
+    	addScene("endLevel2", new EndLevelScreen(this, "toolTip3", im));
+    	addScene("endLevel3", new EndLevelScreen(this, "toolTip4", im));
+    	addScene("endLevel4", new EndLevelScreen(this, "endGameScene", im));
     	
-    	addScene("endGameScene", new EndGameScreen(this));
+    	addScene("endGameScene", new EndGameScreen(this, im));
         setScene("startScene"); //set the initial scene
     }
 

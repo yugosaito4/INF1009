@@ -24,8 +24,6 @@ public class GameScreen extends Scene {
 	private int maxScore = 3; //can be adjusted
 
 	private static final float SPAWN_INTERVAL = 5f; // Interval in seconds
-	
-	private Sound sound;
 
 	public GameScreen(SceneManager game, String nextTargetScene, String loseScene,EntityManager em , PlayerManager pm , SpawnManager spawner , CollisionManager cm, IOManagement im) {
 		super(game, "GameworldBG.jpg");
@@ -37,11 +35,9 @@ public class GameScreen extends Scene {
         this.spawnManager = spawner;
         this.collisionManager = cm;
         this.ioManager = im;
-		this.playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 200, 3, 0, game));
+		this.playerManager.addPlayers(new playerOne("playerSkin/", "playerSkin/Close.png", 100, 200, 350, 3, 0, game, im));
 		this.spawnManager.loadEntity();
 		this.spawnManager.spawnEntityList();
-
-		sound = new Sound();
 
 	}
 
@@ -100,8 +96,8 @@ public class GameScreen extends Scene {
 
 	@Override
 	public void show() {
-		sound.setFile(3);
-		sound.loop();
+		ioManager.setFile(3);
+		ioManager.loop();
 
 	}
 
@@ -125,13 +121,13 @@ public class GameScreen extends Scene {
 
 	@Override
 	public void hide() {
-		sound.stop();
+		ioManager.stop();
 
 	}
 
 	public void dispose() {
 		font.dispose();
-		sound.clip.close();
+		ioManager.getClip().close();
 		super.dispose();
 	}
 }

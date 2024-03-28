@@ -26,14 +26,14 @@ public class LoseLevelScreen extends Scene{
 	private Stage stage;
 	private Button nextButton;
 	
-	private Sound sound;
+	private IOManagement ioManager;
 
-	public LoseLevelScreen(SceneManager game) {
+	public LoseLevelScreen(SceneManager game, IOManagement im) {
 		super(game, "Lose.png");
+		this.ioManager = im;
 		stage = new Stage(new ScreenViewport()); // Use the current screen size
         Gdx.input.setInputProcessor(stage); // Set input processor
         
-        sound = new Sound();
         
         Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
@@ -71,8 +71,8 @@ public class LoseLevelScreen extends Scene{
 	public void show() {
 		// Set the stage as the input processor
         Gdx.input.setInputProcessor(stage);
-        sound.setFile(8);
-        sound.play();
+        ioManager.setFile(8);
+        ioManager.play();
 		
 	}
 
@@ -96,13 +96,13 @@ public class LoseLevelScreen extends Scene{
 
 	@Override
 	public void hide() {
-		sound.stop();
+		ioManager.stop();
 		
 	}
 	
 	public void dispose() {;
 		stage.dispose();
-		sound.clip.stop();
+		ioManager.getClip().stop();
 		super.dispose();
 	}
 }
