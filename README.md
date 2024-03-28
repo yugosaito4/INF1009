@@ -1,8 +1,12 @@
 # INF1009 P8 Team 3
 
-A simple game engine for project milstone 1
+INF1009 Object Oriented Programming Project Part 2 (Game)
 
-# Presentation Video Link
+# Presentation Video Link for GAME ENGINE (Part 1)
+
+* https://youtu.be/Aic1wsClM9U
+
+# Presentation Video Link for GAME ENGINE (Part 1)
 
 * https://youtu.be/Aic1wsClM9U
 
@@ -15,10 +19,13 @@ A simple game engine for project milstone 1
 
 * Import project folder as gradle -> Exisiting Gradle Project
 * Run new Config
+* Game engine codes are located in the com package
+* Game layer codes are located in the gameLayer package
 
-# Usage
+# How to play NutriChase
 
-* Player entity (water droplet) can be moved via the arrow keys
-* Right click will change screen texture from first scene to second scene and esc key will change from second scene back to first
-* Console will print collision output when collision is detetced
-* TextureObject,TextureObjectStatic,TextureObjectAI,GameScene,MainScene are all dummy class to show output and not game-level implmentations
+* Start the game
+* Move around using the arrow keys
+* Follow instructions gievn prior to the stage
+* Collect the required objects to finish the level
+* Total of 4 stages
